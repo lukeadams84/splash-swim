@@ -34,7 +34,11 @@ class SwimclassesController extends AdminController
             $precalculate = $this->request->getData();
             $dataarray = [];
             $coursegroup = TableRegistry::get('Coursegroups');
-            $newcoursegroup = $coursegroup->newEntity(['swimclass_id' => $precalculate['swimclass_id'], 'price' => $precalculate['amount']]);
+            $newcoursegroup = $coursegroup->newEntity([
+              'swimclass_id' => $precalculate['swimclass_id'],
+              'price' => $precalculate['amount'],
+              'courselength' => $precalculate['courselength']
+            ]);
             $last_id = $coursegroup->save($newcoursegroup);
 
             for ($i = 1; $i <= $precalculate['duration']; $i++) {

@@ -3,6 +3,7 @@ namespace App\Controller\User;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Date;
 
 /**
  * Classes Controller
@@ -37,15 +38,15 @@ class SwimclassesController extends UserController
      */
     public function view($id = null)
     {
-        $class = $this->Swimclasses->get($id, [
-            'contain' => ['Classevents']
-        ]);
-
+        $class = $this->Swimclasses->get($id, ['contain' => ['Classevents']]);
+        $courses = $this->Swimclasses->Coursegroups->find()
+          ->where(['swimclass_id' => $id ])
+          ->contain(['Classevents' => ['Venues'], 'Students']);
 
         $venues = $this->Swimclasses->Venues->find('all');
 
-        $this->set(compact('class', 'venues'));
-        
-        $this->set('_serialize', ['class', 'venues']);
+        $this->set(compact('class', 'venues', 'courses'));
+
+        $this->set('_serialize', ['class', 'venues', 'courses']);
     }
 }
