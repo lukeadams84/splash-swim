@@ -7,11 +7,11 @@ if (file_exists($file)) {
     echo ob_get_clean();
 } else {
 ?>
-<footer class="main-footer">
+<footer class="main-footer" style="background: #2d3e50; color: #aaa;">
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.3.2
     </div>
-    <strong>Copyright &copy; 2017 Splash Swim School - Designed by <a href="https://www.thirteen-37.com">Thirteen-37</a>.</strong> All rights
+    Copyright &copy; 2017 Splash Swim School - Designed & managed by <a href="https://www.thirteen-37.com" target="_blank"><img src="/img/logo-transparent-small.png" style="height:40px; vertical-align:middle;"></a> All rights
     reserved.
 </footer>
 <?php } ?>
