@@ -30,6 +30,24 @@
         </div>
         <!-- ./col -->
 
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><?php $coursecount = 0;foreach($students as $student) { $coursecount = $coursecount + count($student['coursegroups']); }
+
+               echo $coursecount; ?></h3>
+
+              <p>Registered Courses</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-android-exit"></i>
+            </div>
+            <a href="/user/swimclasses" class="small-box-footer">List <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+
       </div>
       <!-- /.row -->
 

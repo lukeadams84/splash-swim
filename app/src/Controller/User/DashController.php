@@ -18,7 +18,7 @@ class DashController extends UserController
 
     $studentTable = TableRegistry::get('Students');
     //print_r($this->request->session()->read('Auth.User'));
-    $query = $studentTable->find('ownedBy', ['parent' => $this->request->session()->read('Auth.User')]);
+    $query = $studentTable->find('ownedBy', ['parent' => $this->request->session()->read('Auth.User'), 'contain' => ['Coursegroups']]);
     $students = $query->toArray();
 
     $this->set(compact('students'));

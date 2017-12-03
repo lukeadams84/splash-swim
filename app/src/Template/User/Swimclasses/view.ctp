@@ -26,21 +26,7 @@
           <p class="text-muted text-center">Swim Class</p>
 
           <ul class="list-group list-group-unbordered">
-            <li class="list-group-item">
-              <b>Instructor</b> <a class="pull-right"><?php echo $class['teacher']['firstname']; ?></a>
-            </li>
-            <li class="list-group-item">
-              <b>Venue</b> <a class="pull-right"><?php echo $class['venue']['name']; ?></a>
-            </li>
-            <li class="list-group-item">
-              <b>Times</b> <a class="pull-right"><?php echo $class['day'] . ' at ' . $class['time']; ?></a>
-            </li>
-            <li class="list-group-item">
-              <b>Spaces</b> <a class="pull-right"><?php echo $class['size']; ?></a>
-            </li>
-            <li class="list-group-item">
-              <b>Course Length</b> <a class="pull-right"><?php echo $class['duration'] . ' weeks'; ?></a>
-            </li>
+
 
           </ul>
 
@@ -55,7 +41,7 @@
     <!-- /.col -->
     <div class="col-md-9">
       <div class="box box-primary">
-        <h3 class="box-title">Schedule Course</h3>
+        <h3 class="box-title">Available Course</h3>
         <div class="box-body no-padding">
 
           <table class="table">
@@ -80,7 +66,7 @@
               <td><?php echo $course['courselength'] . ' Weeks'; ?></td>
               <td><?php echo $course['price']; ?></td>
               <td><?php echo $course['classevents']['0']['spaces'] - count($course['students']); ?></td>
-              <td><a href="#"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a></td>
+              <td><a href="/user/swimclasses/book/<?php echo $course['id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a></td>
             </tr>
           <?php } }?>
           </table>

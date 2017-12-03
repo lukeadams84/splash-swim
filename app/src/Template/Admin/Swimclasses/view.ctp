@@ -113,7 +113,7 @@
             </div>
             <div class="form-group">
               <label for="duration">Class Length (weeks)</label>
-              <input type="text" class="form-control" name="duration" value="<?php echo $class['duration']; ?>">
+              <input type="text" class="form-control" name="length" value="<?php echo $class['length']; ?>">
             </div>
             <div class="form-group">
               <label for="duration">Spaces</label>
@@ -143,7 +143,7 @@
           </div>
           <div class="form-group">
             <label>Class length (mins)</label>
-              <input type="text" class="form-control" name="length" id="length">
+              <input type="text" class="form-control" name="duration" id="duration">
           </div>
           <div class="form-group">
             <label>Price</label>

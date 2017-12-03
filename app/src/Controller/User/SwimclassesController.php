@@ -39,6 +39,7 @@ class SwimclassesController extends UserController
     public function view($id = null)
     {
         $class = $this->Swimclasses->get($id, ['contain' => ['Classevents']]);
+
         $courses = $this->Swimclasses->Coursegroups->find()
           ->where(['swimclass_id' => $id ])
           ->contain(['Classevents' => ['Venues'], 'Students']);
@@ -46,7 +47,26 @@ class SwimclassesController extends UserController
         $venues = $this->Swimclasses->Venues->find('all');
 
         $this->set(compact('class', 'venues', 'courses'));
-
         $this->set('_serialize', ['class', 'venues', 'courses']);
+    }
+
+    public function book($id = null)
+    {
+
+      $user = TableRegistry::get('Users');
+      $user = $user->get($this->request->session()->read('Auth.User.id'), [
+          'contain' => ['Students']
+      ]);
+
+      $courses = $this->Swimclasses->Coursegroups->find()
+        ->where(['id' => $id])
+        ->contain(['Classevents' => ['Venues'], 'Students'])
+        ->limit(1);
+      //$class = $this->Swimclasses->get($courses['swimclass_id']);
+
+      $this->set(compact('courses', 'user', 'class'));
+      if ($this->request->is('post')) {
+
+      }
     }
 }
