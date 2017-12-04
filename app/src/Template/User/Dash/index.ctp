@@ -56,27 +56,27 @@
     <!-- /.content -->
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/iCheck/flat/blue',
-    'AdminLTE./plugins/morris/morris',
-    'AdminLTE./plugins/jvectormap/jquery-jvectormap-1.2.2',
-    'AdminLTE./plugins/datepicker/datepicker3',
-    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
-    'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min'
+    'UserLTE./plugins/iCheck/flat/blue',
+    'UserLTE./plugins/morris/morris',
+    'UserLTE./plugins/jvectormap/jquery-jvectormap-1.2.2',
+    'UserLTE./plugins/datepicker/datepicker3',
+    'UserLTE./plugins/daterangepicker/daterangepicker-bs3',
+    'UserLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min'
   ],
   ['block' => 'css']);
 
 $this->Html->script([
   'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js',
-  'AdminLTE./plugins/morris/morris.min',
-  'AdminLTE./plugins/sparkline/jquery.sparkline.min',
-  'AdminLTE./plugins/jvectormap/jquery-jvectormap-1.2.2.min',
-  'AdminLTE./plugins/jvectormap/jquery-jvectormap-world-mill-en',
-  'AdminLTE./plugins/knob/jquery.knob',
+  'UserLTE./plugins/morris/morris.min',
+  'UserLTE./plugins/sparkline/jquery.sparkline.min',
+  'UserLTE./plugins/jvectormap/jquery-jvectormap-1.2.2.min',
+  'UserLTE./plugins/jvectormap/jquery-jvectormap-world-mill-en',
+  'UserLTE./plugins/knob/jquery.knob',
   'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js',
-  'AdminLTE./plugins/datepicker/bootstrap-datepicker',
-  'AdminLTE./plugins/daterangepicker/daterangepicker',
-  'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
+  'UserLTE./plugins/datepicker/bootstrap-datepicker',
+  'UserLTE./plugins/daterangepicker/daterangepicker',
+  'UserLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
 ],
 ['block' => 'script']);
 ?>
