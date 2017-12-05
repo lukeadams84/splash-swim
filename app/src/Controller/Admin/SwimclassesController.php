@@ -37,17 +37,18 @@ class SwimclassesController extends AdminController
             $newcoursegroup = $coursegroup->newEntity([
               'swimclass_id' => $precalculate['swimclass_id'],
               'price' => $precalculate['amount'],
-              'courselength' => $precalculate['courselength']
+              //'courselength' => $precalculate['length']
             ]);
             $last_id = $coursegroup->save($newcoursegroup);
 
-            for ($i = 1; $i <= $precalculate['duration']; $i++) {
+            for ($i = 1; $i <= $precalculate['length']; $i++) {
                 $dataarray[$i] = $precalculate;
                 $dataarray[$i]['coursegroup_id'] = $last_id->id;
                 $dataarray[$i]['weeknum'] = $i;
+                $dataarray[$i]['time'] = date('Y-m-d H:i:s', strtotime($precalculate['time']));
             }
 
-            for ($z = 1; $z <= $precalculate['duration']; $z++) {
+            for ($z = 1; $z <= $precalculate['length']; $z++) {
                 $date = date($dataarray[$z]['classdate']);
                 $dataarray[$z]['classdate'] = gmdate("Y-m-d", strtotime("+" . ($z * 7) -7 . " days", strtotime($date)));
             }

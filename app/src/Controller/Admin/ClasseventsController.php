@@ -27,7 +27,6 @@ class ClasseventsController extends AdminController
             'limit' => 100
         ];
         $classes = $this->paginate($this->Classevents);
-        echo 'test';
         $this->set(compact('classes'));
         $this->set('_serialize', ['classes']);
     }
