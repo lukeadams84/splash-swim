@@ -12,9 +12,9 @@ if(file_exists("app.env")) {
     $dotenv->load();
 }
 
-Configuration::environment('sandbox');
-Configuration::merchantId('kf9572k9337fv9w7');
-Configuration::publicKey('fkjb2y3sq3sn4vym');
-Configuration::privateKey('1dcc2994d5b24f0931ed9bc2f79ae1e0');
+Configuration::environment('production');
+Configuration::merchantId('gh4r4mx6pnfmhxwh');
+Configuration::publicKey('nkmwnmrnm7hqt5w4');
+Configuration::privateKey('26f7f6dfb8ff61e35eaa279bd2d00b12');
 
 ?>

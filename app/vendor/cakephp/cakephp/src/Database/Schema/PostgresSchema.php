@@ -44,19 +44,17 @@ class PostgresSchema extends BaseSchema
             data_type AS type,
             is_nullable AS null, column_default AS default,
             character_maximum_length AS char_length,
-            c.collation_name,
             d.description as comment,
             ordinal_position,
             c.numeric_precision as column_precision,
-            c.numeric_scale as column_scale,
-            pg_get_serial_sequence(attr.attrelid::regclass::text, attr.attname) IS NOT NULL AS has_serial
+            c.numeric_scale as column_scale
         FROM information_schema.columns c
         INNER JOIN pg_catalog.pg_namespace ns ON (ns.nspname = table_schema)
         INNER JOIN pg_catalog.pg_class cl ON (cl.relnamespace = ns.oid AND cl.relname = table_name)
         LEFT JOIN pg_catalog.pg_index i ON (i.indrelid = cl.oid AND i.indkey[0] = c.ordinal_position)
         LEFT JOIN pg_catalog.pg_description d on (cl.oid = d.objoid AND d.objsubid = c.ordinal_position)
         LEFT JOIN pg_catalog.pg_attribute attr ON (cl.oid = attr.attrelid AND column_name = attr.attname)
-        WHERE table_name = ? AND table_schema = ? AND table_catalog = ?
+        WHERE table_name = ? AND table_schema = ? OR table_catalog = ?
         ORDER BY ordinal_position';
 
         $schema = empty($config['schema']) ? 'public' : $config['schema'];
@@ -165,7 +163,7 @@ class PostgresSchema extends BaseSchema
         $field += [
             'default' => $this->_defaultValue($row['default']),
             'null' => $row['null'] === 'YES',
-            'collate' => $row['collation_name'],
+            //'collate' => $row['collation_name'],
             'comment' => $row['comment']
         ];
         $field['length'] = $row['char_length'] ?: $field['length'];
