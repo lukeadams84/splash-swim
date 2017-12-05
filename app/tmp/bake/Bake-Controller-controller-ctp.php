@@ -17,8 +17,6 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 use Cake\Utility\Inflector;
-
-$defaultModel = $name;
 ?>
 <CakePHPBakeOpenTagphp
 namespace <?= $namespace ?>\Controller<?= $prefix ?>;
@@ -28,8 +26,10 @@ use <?= $namespace ?>\Controller\AppController;
 /**
  * <?= $name ?> Controller
  *
- * @property \<?= $namespace ?>\Model\Table\<?= $defaultModel ?>Table $<?= $defaultModel ?>
+<?php if ($defaultModel): ?>
+ * @property \<?= $defaultModel ?> $<?= $name ?>
 
+<?php endif; ?>
 <?php
 foreach ($components as $component):
     $classInfo = $this->Bake->classInfo($component, 'Controller/Component', 'Component');
@@ -37,6 +37,10 @@ foreach ($components as $component):
  * @property <?= $classInfo['fqn'] ?> $<?= $classInfo['name'] ?>
 
 <?php endforeach; ?>
+<?php if (in_array('index', $actions)): ?>
+ *
+ * @method \<?= $namespace ?>\Model\Entity\<?= $entityClassName ?>[] paginate($object = null, array $settings = [])
+<?php endif; ?>
  */
 class <?= $name ?>Controller extends AppController
 {
