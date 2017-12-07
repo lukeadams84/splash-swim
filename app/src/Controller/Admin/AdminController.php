@@ -53,7 +53,7 @@ class AdminController extends AppController
                   'Form' => [
                     'userModel' => 'Users', // Added This
                     'fields' => [
-                      'username' => 'username',
+                      'username' => 'email',
                       'password' => 'password',
                      ]
                    ]

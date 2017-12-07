@@ -48,9 +48,107 @@
         </div>
         <!-- ./col -->
 
+        <div class="col-lg-6 col-xs-12">
+          <?php if(empty($user['address1']) || empty($user['town']) || empty($user['county'])) { ?>
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Are you new?</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="post" action="/user/users/edit/<?php echo $user['id'];?>">
+            <?php //echo $this->Form->create('User', ['url' => ['prefix' => 'user', 'controller' => 'users', 'action' => 'edit', $user['id']]]);?>
+
+              <div class="box-body">
+                <p>Complete your profile.</p>
+
+                <?php
+                  //echo $this->Form->hidden('id', array('value' => $user['id']));
+                  echo $this->Form->input('email', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['email'] ));
+                  echo $this->Form->input('firstname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['firstname'] ));
+                  echo $this->Form->input('lastname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['lastname'] ));
+                  echo $this->Form->input('address1', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['address1'] ));
+                  echo $this->Form->input('address2', array('class' => 'form-control', 'type' => 'text', 'required' => false, 'value' => $user['address2'] ));
+                  echo $this->Form->input('town', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['town'] ));
+                  echo $this->Form->input('county', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['county'] ));
+                ?>
+                <p></p>
+                <?php echo $this->Form->submit('Submit', array('class' => 'btn btn-primary btn-block btn-flat')); ?>
+
+            </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      <?php } else { ?>
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Get started...</h3>
+        </div>
+
+        <div class="box-body">
+          <div class="row">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <a href="/user/students/add">
+            <div class="info-box">
+              <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Register a student</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          </a>
+          <!-- /.info-box -->
+          </div>
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-red"><i class="fa fa-plus-square"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Book a course</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          <!-- /.info-box -->
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-trophy"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">View achievements</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        <!-- /.info-box -->
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">View payments</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        <!-- /.info-box -->
+        </div>
+      </div>
+      </div>
+
+      </div>
+    <?php } ?>
       </div>
       <!-- /.row -->
+      <div class="row">
 
+
+
+      </div>
 
     </section>
     <!-- /.content -->

@@ -3,7 +3,7 @@
 
 <form action="<?php echo $this->Url->build(array('prefix' => 'user', 'controller' => 'users', 'action' => 'login')); ?>" method="post">
   <div class="form-group has-feedback">
-    <input type="text" class="form-control" placeholder="Username" name="username">
+    <input type="text" class="form-control" placeholder="Email" name="email">
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
   </div>
   <div class="form-group has-feedback">
@@ -11,15 +11,11 @@
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
   <div class="row">
-    <div class="col-xs-8">
-      <div class="checkbox icheck">
-        <label>
-          <input type="checkbox"> Remember Me
-        </label>
-      </div>
+    <div class="col-xs-6">
+      <a href="/user/users/register" class="btn btn-primary btn-block btn-flat"><?php echo __('Register') ?></a>
     </div>
     <!-- /.col -->
-    <div class="col-xs-4">
+    <div class="col-xs-6">
       <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
     </div>
     <!-- /.col -->

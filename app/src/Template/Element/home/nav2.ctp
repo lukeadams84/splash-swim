@@ -1,6 +1,6 @@
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="/"><img src="/img/splash.png" style="width:120px; top:10px; position:fixed" /></a>
+        <a class="pure-menu-heading" href="/"><img src="/img/logos/splash-sm-300.png" style="width:120px; top:10px; position:fixed" /></a>
 
         <ul class="pure-menu-list">
             <li class="pure-menu-item pure-menu-selected"><a href="/" class="pure-menu-link">Home</a></li>

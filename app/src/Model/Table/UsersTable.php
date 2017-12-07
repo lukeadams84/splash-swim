@@ -52,7 +52,6 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
       return $validator
-          ->notEmpty('username', 'A username is required')
           ->notEmpty('password', 'A password is required')
           ->notEmpty('email', 'An email address is required')
           ->notEmpty('fistname', 'A firstname is required')
@@ -61,6 +60,14 @@ class UsersTable extends Table
           ->add('role', 'inList', [
               'rule' => ['inList', ['admin', 'parent']],
               'message' => 'Please enter a valid role'
+          ])
+          ->add('email', 'valid', [
+              'rule' => 'email',
+              'message' => 'Invalid email address'
+          ])
+          ->add('password_confirm', 'no-misspelling', [
+              'rule' => ['compareWith', 'password'],
+              'message' => 'Passwords do not match',
           ]);
 
     }
@@ -74,7 +81,6 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
 
         return $rules;

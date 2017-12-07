@@ -21,10 +21,7 @@ class StudentsController extends UserController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Parent', 'Coursegroups']
-        ];
-        $students = $this->paginate($this->Students);
+        $students = $this->Students->find('ownedBy', ['parent' => $this->request->session()->read('Auth.User'), 'contain' => ['Coursegroups']]);
 
         $this->set(compact('students'));
         $this->set('_serialize', ['students']);

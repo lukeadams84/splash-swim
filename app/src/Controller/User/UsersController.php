@@ -5,7 +5,6 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Braintree;
 require("../vendor/braintree/braintree_php/lib/autoload.php");
-/*require("../vendor/braintree/braintree_php/lib/Braintree.php");*/
 
 
 /**
@@ -15,6 +14,11 @@ require("../vendor/braintree/braintree_php/lib/autoload.php");
  */
 class UsersController extends UserController
 {
+
+  //var $scaffold;
+
+  # needed for 'register'
+  var $helpers = array('Html', 'Form');
 
     /**
      * View method
@@ -42,28 +46,41 @@ class UsersController extends UserController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
+        $user = $this->Users->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['prefix' => 'user', 'controller' => 'Dash', 'action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            return $this->redirect(['prefix' => 'user', 'controller' => 'Dash', 'action' => 'index']);
         }
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
     }
 
 
     public function beforeFilter(Event $event)
     {
       parent::beforeFilter($event);
-      $this->Auth->allow(['logout']);
+      $this->Auth->allow(['logout', 'register']);
 
+    }
+
+    public function register()
+    {
+      $user = $this->Users->newEntity();
+      if ($this->request->is('post')) {
+          $user = $this->Users->patchEntity($user, $this->request->getData());
+          if ($this->Users->save($user)) {
+              $this->Flash->success(__('Your account has been created, please sign in below.'));
+
+              return $this->redirect('/user/users/login');
+          }
+          $this->Flash->error(__('The user could not be saved. Please, try again.'));
+      }
+      $this->set(compact('user'));
+      $this->set('_serialize', ['user']);
     }
 
     public function login()

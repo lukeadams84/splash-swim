@@ -6,23 +6,24 @@ use Cake\I18n\Date;
 use Cake\Utility\Hash;
 use Cake\ORM\TableRegistry;
 
-/**
- * Students Controller
- *
- * @property \App\Model\Table\StudentsTable $Students
- */
+
 class DashController extends UserController
 {
 
   public function index() {
 
     $studentTable = TableRegistry::get('Students');
-    //print_r($this->request->session()->read('Auth.User'));
+    $userTable = TableRegistry::get('Users');
+    $userquery = $userTable->find('all')
+      ->where(['Users.id =' => $this->request->session()->read('Auth.User.id')])
+      ->limit(1);
+    //$user = $this->request->session()->read('Auth.User');
     $query = $studentTable->find('ownedBy', ['parent' => $this->request->session()->read('Auth.User'), 'contain' => ['Coursegroups']]);
     $students = $query->toArray();
+    $user = $userquery->first();
 
-    $this->set(compact('students'));
-    $this->set('_serialize', ['students']);
+    $this->set(compact('students', 'user'));
+    $this->set('_serialize', ['students', 'user']);
 
 
   }
