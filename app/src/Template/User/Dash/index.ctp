@@ -58,10 +58,9 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form method="post" action="/user/users/edit/<?php echo $user['id'];?>">
-            <?php //echo $this->Form->create('User', ['url' => ['prefix' => 'user', 'controller' => 'users', 'action' => 'edit', $user['id']]]);?>
 
               <div class="box-body">
-                <p>Complete your profile.</p>
+                <h4>Complete your profile to get started.</h4>
 
                 <?php
                   //echo $this->Form->hidden('id', array('value' => $user['id']));
@@ -69,9 +68,10 @@
                   echo $this->Form->input('firstname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['firstname'] ));
                   echo $this->Form->input('lastname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['lastname'] ));
                   echo $this->Form->input('address1', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['address1'] ));
-                  echo $this->Form->input('address2', array('class' => 'form-control', 'type' => 'text', 'required' => false, 'value' => $user['address2'] ));
+                  echo $this->Form->input('address2', array('class' => 'form-control', 'type' => 'text', 'value' => $user['address2'] ));
                   echo $this->Form->input('town', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['town'] ));
                   echo $this->Form->input('county', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['county'] ));
+                  echo $this->Form->input('phone', array('class' => 'form-control', 'type' => 'tel', 'required' => true, 'value' => $user['phone'] ));
                 ?>
                 <p></p>
                 <?php echo $this->Form->submit('Submit', array('class' => 'btn btn-primary btn-block btn-flat')); ?>

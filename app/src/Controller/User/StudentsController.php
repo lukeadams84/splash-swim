@@ -92,16 +92,18 @@ class StudentsController extends UserController
     {
         $student = $this->Students->newEntity();
         if ($this->request->is('post')) {
-            $student = $this->Students->patchEntity($student, $this->request->getData());
+            $data = $this->request->getData();
+            $data['dob'] = date('Y-m-d H:i:s', strtotime($data['dob']));
+            $student = $this->Students->patchEntity($student, $data);
             if ($this->Students->save($student)) {
-                $this->Flash->success(__('The student has been saved.'));
+                $this->Flash->success(__('The student has been created.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['prefix' => 'user', 'controller' => 'Students', 'action' => 'index']);
             }
             $this->Flash->error(__('The student could not be saved. Please, try again.'));
+            print_r($student);
         }
-        $parentStudents = $this->Students->ParentStudents->find('list', ['limit' => 200]);
-        $this->set(compact('student', 'parentStudents'));
+        $this->set(compact('student'));
         $this->set('_serialize', ['student']);
     }
 

@@ -50,7 +50,7 @@ class UsersController extends UserController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Thanks for updating your profile!'));
 
                 return $this->redirect(['prefix' => 'user', 'controller' => 'Dash', 'action' => 'index']);
             }

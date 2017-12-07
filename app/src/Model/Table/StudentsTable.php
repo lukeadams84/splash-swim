@@ -82,15 +82,6 @@ class StudentsTable extends Table
             ->requirePresence('lastname', 'create')
             ->notEmpty('lastname');
 
-        $validator
-            ->date('dob')
-            ->requirePresence('dob', 'create')
-            ->notEmpty('dob');
-
-        $validator
-            ->requirePresence('gender', 'create')
-            ->notEmpty('gender');
-
         return $validator;
     }
 
@@ -107,10 +98,10 @@ class StudentsTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    /*public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['parent_id'], 'ParentStudents'));
 
         return $rules;
-    }
+    }*/
 }

@@ -27,6 +27,8 @@
                         <th scope="col">Lastname</th>
                         <th scope="col">Date of Birth</th>
                         <th scope="col">Gender</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Requirements</th>
                         <th scope="col">Created</th>
                         <th scope="col" class="actions"><?= __('Actions') ?></th>
                     </tr>
@@ -38,11 +40,11 @@
                       <td><?= h($student->lastname) ?></td>
                       <td><?= h($student->dob) ?></td>
                       <td><?= h($student->gender) ?></td>
+                      <td><?= h($student->level) ?></td>
+                      <td><?= h($student->requirements) ?></td>
                       <td><?= h($student->created) ?></td>
                       <td class="actions">
                           <?= $this->Html->link(__('View'), ['action' => 'profile', $student->id]) ?>
-                          <?= $this->Html->link(__('Edit'), ['action' => 'edit', $student->id]) ?>
-                          <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $student->id], ['confirm' => __('Are you sure you want to delete # {0}?', $student->id)]) ?>
                       </td>
                   </tr>
                   <?php endforeach; ?>
