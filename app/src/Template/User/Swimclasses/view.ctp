@@ -66,7 +66,7 @@
               <td><?php echo $course['courselength'] . ' Weeks'; ?></td>
               <td><?php echo $course['price']; ?></td>
               <td><?php echo $course['classevents']['0']['spaces'] - count($course['students']); ?></td>
-              <td><a href="/user/swimclasses/book/<?php echo $course['id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a></td>
+              <td><a href="/user/swimclasses/book/<?php echo $course['swimclass_id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a></td>
             </tr>
           <?php } }?>
           </table>

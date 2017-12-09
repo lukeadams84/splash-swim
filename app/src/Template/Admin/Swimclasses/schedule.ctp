@@ -144,7 +144,7 @@
               <label>Class length (mins)</label>
 
 
-                <input type="text" class="form-control" name="length" id="length">
+                <input type="text" class="form-control" name="mins" id="mins">
 
             </div>
 

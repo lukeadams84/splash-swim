@@ -13,7 +13,7 @@ use Cake\ORM\TableRegistry;
  */
 class StudentsController extends UserController
 {
-
+    var $helpers = array('Time');
     /**
      * Index method
      *

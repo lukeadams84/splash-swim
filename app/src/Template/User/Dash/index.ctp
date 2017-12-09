@@ -95,7 +95,8 @@
               <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Register a student</span>
+                <h5>First...</h5>
+                <span class="info-box-text">Register<br> a student</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -107,6 +108,7 @@
               <span class="info-box-icon bg-red"><i class="fa fa-plus-square"></i></span>
 
               <div class="info-box-content">
+                <h5>Then...</h5>
                 <span class="info-box-text">Book a course</span>
               </div>
               <!-- /.info-box-content -->

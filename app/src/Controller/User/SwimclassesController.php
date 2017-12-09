@@ -57,16 +57,21 @@ class SwimclassesController extends UserController
       $user = $user->get($this->request->session()->read('Auth.User.id'), [
           'contain' => ['Students']
       ]);
+      $courses = $this->Swimclasses->get($id, [
+          'contain' => [
+            'Classevents' => [
+                'conditions' => ['weeknum =' => 1, 'classdate >' => Date::now() ],
+                'Coursegroups' => [
+                  'Students'
+                ],
+                'Venues'
+            ]
+          ]
+      ]);
 
-      $courses = $this->Swimclasses->Coursegroups->find()
-        ->where(['id' => $id])
-        ->contain(['Classevents' => ['Venues'], 'Students'])
-        ->limit(1);
-      //$class = $this->Swimclasses->get($courses['swimclass_id']);
+      $class = $this->Swimclasses->get($id, ['contain' => ['Classevents' => ['Venues']]]);
 
-      $this->set(compact('courses', 'user', 'class'));
-      if ($this->request->is('post')) {
-
-      }
+      $this->set(compact('user', 'class', 'courses'));
+      
     }
 }

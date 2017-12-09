@@ -19,7 +19,7 @@
               <h3 class="box-title">Students</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body table-responsive">
               <table id="list" class="table table-bordered table-hover">
                   <thead>
                       <tr>
@@ -36,15 +36,15 @@
                 <tbody>
                   <?php foreach ($students as $student): ?>
                   <tr>
-                      <td><?= h($student->firstname) ?></td>
-                      <td><?= h($student->lastname) ?></td>
-                      <td><?= h($student->dob) ?></td>
-                      <td><?= h($student->gender) ?></td>
-                      <td><?= h($student->level) ?></td>
-                      <td><?= h($student->requirements) ?></td>
-                      <td><?= h($student->created) ?></td>
+                      <td><?php echo $student['firstname']; ?></td>
+                      <td><?php echo $student['lastname']; ?></td>
+                      <td><?php echo date('d-m-Y', strtotime($student['dob'])); ?></td>
+                      <td><?php echo $student['gender']; ?></td>
+                      <td><?php echo $student['level']; ?></td>
+                      <td><?php echo $student['requirements']; ?></td>
+                      <td><?php echo date('d-m-Y', strtotime($student['created'])); ?></td>
                       <td class="actions">
-                          <?= $this->Html->link(__('View'), ['action' => 'profile', $student->id]) ?>
+                          <a href="/user/students/profile/<?php echo $student->id;?>"><button type="button" class="btn btn-xs btn-block btn-primary">Profile</button></a>
                       </td>
                   </tr>
                   <?php endforeach; ?>

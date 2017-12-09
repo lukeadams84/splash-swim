@@ -37,7 +37,7 @@ class SwimclassesController extends AdminController
             $newcoursegroup = $coursegroup->newEntity([
               'swimclass_id' => $precalculate['swimclass_id'],
               'price' => $precalculate['amount'],
-              //'courselength' => $precalculate['length']
+              'courselength' => $precalculate['length'],
             ]);
             $last_id = $coursegroup->save($newcoursegroup);
 
@@ -46,6 +46,7 @@ class SwimclassesController extends AdminController
                 $dataarray[$i]['coursegroup_id'] = $last_id->id;
                 $dataarray[$i]['weeknum'] = $i;
                 $dataarray[$i]['time'] = date('Y-m-d H:i:s', strtotime($precalculate['time']));
+                $dataarray[$i]['duration'] = $precalculate['duration'];
             }
 
             for ($z = 1; $z <= $precalculate['length']; $z++) {

@@ -18,6 +18,7 @@ if (file_exists($file)) {
         </a>
         <ul class="treeview-menu">
             <li><a href="<?php echo $this->Url->build('/user/students'); ?>"><i class="fa fa-list"></i> List</a></li>
+            <li><a href="<?php echo $this->Url->build('/user/students/add'); ?>"><i class="fa fa-plus"></i> Add</a></li>
         </ul>
     </li>
     <li class="treeview">

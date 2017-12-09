@@ -11,8 +11,10 @@ class TransactionsController extends UserController
 {
     public function index()
     {
-        $this->paginate = [ 'contain' => [ 'Students', 'Coursegroups' ]];
+        $this->paginate = [ 'contain' => [ 'Students' => ['conditions' => ['parent_id' => $this->request->session()->read('Auth.User.id')]], 'Coursegroups' ]];
         $transactions = $this->paginate($this->Transactions);
+
+
 
         $this->set(compact('transactions'));
         $this->set('_serialize', ['transactions']);
@@ -34,12 +36,28 @@ class TransactionsController extends UserController
 
     public function checkout()
     {
+        $studentTable = TableRegistry::get('Students');
+        $coursegroupTable = TableRegistry::get('Coursegroups');
         $data = $this->request->data();
         $result = Braintree\Transaction::sale([
           'amount'              => $data['amount'],
           'paymentMethodNonce'  => $data['payment_method_nonce'],
+          'customer' => [
+             'firstName' => $this->request->session()->read('Auth.User.firstname'),
+             'lastName' => $this->request->session()->read('Auth.User.lastname')
+          ],
+          'billing'    => [
+              'firstName' => $this->request->session()->read('Auth.User.firstname'),
+              'lastName' => $this->request->session()->read('Auth.User.lastname'),
+              'streetAddress' => $this->request->session()->read('Auth.User.address1'),
+              'extendedAddress' => $this->request->session()->read('Auth.User.address2'),
+              'locality' => $this->request->session()->read('Auth.User.town'),
+              'region' => $this->request->session()->read('Auth.User.county')
+          ],
           'options' => [
-              'submitForSettlement' => true
+              'submitForSettlement' => true,
+              'storeInVault' => true,
+              'addBillingAddressToPaymentMethod' => true
           ]
       ]);
 
@@ -48,8 +66,8 @@ class TransactionsController extends UserController
             $tn = $this->Transactions->newEntity();
             $status = $this->testtransaction($transaction->id);
             $tndata = [
-              'student_id' =>  $data['student_id'],
-              'coursegroup_id' => $data['coursegroup_id'],
+              'student_id' =>  $data['chosenstudent'],
+              'coursegroup_id' => $data['chosencourse'],
               'braintreeid' => $transaction->id,
               'amount' => $data['amount'],
               'processorresponse' => $transaction->processorResponseText,
@@ -59,8 +77,11 @@ class TransactionsController extends UserController
             $tn = $this->Transactions->patchEntity($tn, $tndata);
 
             if ($status == "Success") {
+                $student = $studentTable->get($data['chosenstudent']);
+                $course = $coursegroupTable->get($data['chosencourse']);
+                $studentTable->Coursegroups->link($student, [$course]);
                 $this->Transactions->save($tn);
-                $this->Flash->success(__($status));
+                $this->Flash->success(__('Thank you, your payment was successful.'));
                 return $this->redirect('/user/transactions');
             } else {
                 $this->Transactions->save($tn);
