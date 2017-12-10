@@ -11,7 +11,7 @@ class TransactionsController extends UserController
 {
     public function index()
     {
-        $this->paginate = [ 'contain' => [ 'Students' => ['conditions' => ['parent_id' => $this->request->session()->read('Auth.User.id')]], 'Coursegroups' ]];
+        $this->paginate = [ 'conditions' => ['Transactions.user_id' => $this->request->session()->read('Auth.User.id') ], 'contain' => [ 'Students', 'Coursegroups' ]];
         $transactions = $this->paginate($this->Transactions);
 
 
@@ -68,6 +68,7 @@ class TransactionsController extends UserController
             $tndata = [
               'student_id' =>  $data['chosenstudent'],
               'coursegroup_id' => $data['chosencourse'],
+              'user_id' => $this->request->session()->read('Auth.User.id'),
               'braintreeid' => $transaction->id,
               'amount' => $data['amount'],
               'processorresponse' => $transaction->processorResponseText,

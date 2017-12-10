@@ -105,7 +105,8 @@
           </div>
           <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="info-box">
-              <span class="info-box-icon bg-red"><i class="fa fa-plus-square"></i></span>
+              <a href="/user/swimclasses">
+                <span class="info-box-icon bg-red"><i class="fa fa-plus-square"></i></span>
 
               <div class="info-box-content">
                 <h5>Then...</h5>
@@ -113,6 +114,7 @@
               </div>
               <!-- /.info-box-content -->
             </div>
+          </a>
           <!-- /.info-box -->
           </div>
         </div>

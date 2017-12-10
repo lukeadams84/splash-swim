@@ -50,6 +50,7 @@
           <li>Venue: <?php echo $course['venue']['name']; ?></li>
           <li>Time: <?php echo date('H:i', strtotime($course['time'])); ?></li>
           <li>Class length: <?php echo $course['duration'] . ' mins'; ?></li>
+          <li>Course length: <?php echo $course['length'] . ' weeks'; ?></li>
         </ul>
       </div>
       <?php } ?>

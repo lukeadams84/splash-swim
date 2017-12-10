@@ -20,9 +20,7 @@ class SwimclassesController extends UserController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Classevents']
-        ];
+        $this->paginate = [];
         $classes = $this->paginate($this->Swimclasses);
 
         $this->set(compact('classes'));
@@ -38,15 +36,21 @@ class SwimclassesController extends UserController
      */
     public function view($id = null)
     {
-        $class = $this->Swimclasses->get($id, ['contain' => ['Classevents']]);
-
-        $courses = $this->Swimclasses->Coursegroups->find()
-          ->where(['swimclass_id' => $id ])
-          ->contain(['Classevents' => ['Venues'], 'Students']);
+      $courses = $this->Swimclasses->get($id, [
+          'contain' => [
+            'Classevents' => [
+                'conditions' => ['weeknum =' => 1, 'classdate >' => Date::now() ],
+                'Coursegroups' => [
+                  'Students'
+                ],
+                'Venues'
+            ]
+          ]
+      ]);
 
         $venues = $this->Swimclasses->Venues->find('all');
 
-        $this->set(compact('class', 'venues', 'courses'));
+        $this->set(compact('venues', 'courses'));
         $this->set('_serialize', ['class', 'venues', 'courses']);
     }
 
@@ -68,10 +72,7 @@ class SwimclassesController extends UserController
             ]
           ]
       ]);
+      $this->set(compact('user', 'courses'));
 
-      $class = $this->Swimclasses->get($id, ['contain' => ['Classevents' => ['Venues']]]);
-
-      $this->set(compact('user', 'class', 'courses'));
-      
     }
 }

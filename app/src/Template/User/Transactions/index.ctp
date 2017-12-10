@@ -39,7 +39,7 @@
                       <td><?= h($transaction->braintreeid) ?></td>
                       <td><?= h($transaction->student->firstname) ?></td>
                       <td><?= h($transaction->amount) ?></td>
-                      <td><?= h($transaction->created) ?></td>
+                      <td><?php echo date('d-m-Y', strtotime($transaction->created)); ?></td>
                       <td><?= h($transaction->processorresponse) ?></td>
                       <td><?= h($transaction->last4) ?></td>
                       <td><?= h($transaction->cardtype) ?></td>

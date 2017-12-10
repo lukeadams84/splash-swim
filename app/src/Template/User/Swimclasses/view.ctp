@@ -21,9 +21,9 @@
         <div class="box-body box-profile">
 
 
-          <h3 class="profile-username text-center"><?php echo $class['name']; ?></h3>
+          <h3 class="profile-username text-center"><?php echo $courses['name']; ?></h3>
 
-          <p class="text-muted text-center">Swim Class</p>
+          <a href="/user/swimclasses/book/<?php echo $courses['id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a>
 
           <ul class="list-group list-group-unbordered">
 
@@ -35,13 +35,11 @@
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
-
-
     </div>
     <!-- /.col -->
     <div class="col-md-9">
       <div class="box box-primary">
-        <h3 class="box-title">Available Course</h3>
+        <h3 class="box-title">Next scheduled course blocks</h3>
         <div class="box-body no-padding">
 
           <table class="table">
@@ -52,23 +50,19 @@
               <th>Course Length</th>
               <th>Price</th>
               <th>Spaces</th>
-              <th>Actions</th>
             </tr>
-            <?php foreach($courses as $course) {
-
-
-                if(count($course['classevents']) != 0 && date($course['classevents']['0']['classdate']) < date(strtotime('now'))) {
-            ?>
+            <?php foreach ($courses['classevents'] as $course) {
+    ?>
             <tr>
-              <td><?php echo $this->Time->format($course['classevents']['0']['classdate'], 'dd/M/yy');?></td>
-              <td><?php echo $this->Time->format($course['classevents']['0']['time'], 'HH:mm'); ?></td>
-              <td><?php echo $course['classevents']['0']['venue']['name']; ?></td>
-              <td><?php echo $course['courselength'] . ' Weeks'; ?></td>
-              <td><?php echo $course['price']; ?></td>
-              <td><?php echo $course['classevents']['0']['spaces'] - count($course['students']); ?></td>
-              <td><a href="/user/swimclasses/book/<?php echo $course['swimclass_id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a></td>
+              <td><?php echo $this->Time->format($course['classdate'], 'dd/M/yy'); ?></td>
+              <td><?php echo $this->Time->format($course['time'], 'HH:mm'); ?></td>
+              <td><?php echo $course['venue']['name']; ?></td>
+              <td><?php echo $course['length'] . ' Weeks'; ?></td>
+              <td><?php echo $course['coursegroup']['price']; ?></td>
+              <td><?php echo $course['spaces'] - count($course['students']); ?></td>
             </tr>
-          <?php } }?>
+          <?php
+}?>
           </table>
 
         </div>
@@ -77,11 +71,7 @@
       <!-- /. box -->
     </div>
     <!-- /.col -->
-
-
-
   </div>
   <!-- /.row -->
-
 </section>
 <!-- /.content -->
