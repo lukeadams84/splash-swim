@@ -47,31 +47,7 @@
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Scheduled Classes</h3>
-        </div>
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-          <tr>
-            <th>Date</th>
-            <th>Class</th>
-            <th>Students</th>
-          </tr>
-
-          <?php foreach($class['classevents'] as $event) { ?>
-
-            <tr>
-              <td><?php echo date('d-M', strtotime($event['classdate'])) ?></td>
-              <td><?php echo $class['name']; ?></td>
-              <td><?php echo ''; ?></td>
-            </tr>
-          <?php } ?>
-        </table>
-      </div>
-      <!-- /.box-body -->
-    </div>
-    <!-- /.box -->
+      
 
 
     </div>
@@ -129,19 +105,28 @@
               </div>
               <!-- /.input group -->
             </div>
-            <div class="bootstrap-timepicker">
+
             <div class="form-group">
-              <label>Class Time</label>
-              <div class="input-group">
-                <div class="input-group-addon">
-                  <i class="fa fa-clock-o"></i>
-                </div>
-                <input type="text" class="form-control timepicker" name="time">
-              </div>
-              
-              <!-- /.input group -->
+              <label>Time selector</label><br>
+              <select class="form-control" name="timeselect[]" multiple="multiple" size="12">
+                <option id="10:00" value="10:00"> 10:00
+                <option id="10:30" value="10:30"> 10:30
+                <option id="11:00" value="11:00"> 11:00
+                <option id="11:30" value="11:30"> 11:30
+                <option id="12:00" value="12:00"> 12:00
+                <option id="12:30" value="12:30"> 12:30
+                <option id="13:00" value="13:00"> 13:00
+                <option id="13:30" value="13:30"> 13:30
+                <option id="14:00" value="14:00"> 14:00
+                <option id="14:30" value="14:30"> 14:30
+                <option id="15:00" value="15:00"> 15:00
+                <option id="15:30" value="15:30"> 15:30
+                <option id="16:00" value="16:00"> 16:00
+                <option id="16:30" value="16:30"> 16:30
+                <option id="17:00" value="17:00"> 17:00
+                <option id="17:30" value="17:30"> 17:30
+              </select>
             </div>
-          </div>
           <div class="form-group">
             <label>Class length (mins)</label>
               <input type="text" class="form-control" name="duration" id="duration">

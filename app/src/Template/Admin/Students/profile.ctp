@@ -37,14 +37,14 @@
               <b>Gender</b> <a class="pull-right"><?php echo $student['gender']; ?></a>
             </li>
             <li class="list-group-item">
-              <b>Parent</b> <a href="/admin/users/profile/<?php echo $student['parent_id']; ?>" class="pull-right"><?php echo $student['parent']['firstname'] . ' ' . $student['parent']['lastname']; ?></a>
+              <b>Parent</b> <a href="/user/users/profile/<?php echo $student['parent_id']; ?>" class="pull-right"><?php echo $student['parent']['firstname'] . ' ' . $student['parent']['lastname']; ?></a>
             </li>
             <li class="list-group-item">
               <b>Joined</b> <a class="pull-right"><?php echo $this->Time->format($student['created'], "dd MMM yyyy"); ?></a>
             </li>
 
             <li class="list-group-item">
-              <b>Edit details</b> <a href="/admin/students/edit/<?php echo $student['id']; ?>" class="pull-right">Edit</a>
+              <b>Edit details</b> <a href="/user/students/edit/<?php echo $student['id']; ?>" class="pull-right">Edit</a>
             </li>
           </ul>
 
@@ -63,7 +63,7 @@
           <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
           <li><a href="#awards" data-toggle="tab">Awards</a></li>
           <li><a href="#enrolled" data-toggle="tab">Enrolled Courses</a></li>
-          <li><a href="#courses" data-toggle="tab">Available Courses</a></li>
+          <li><a href="#courses" data-toggle="tab">Avail Courses</a></li>
           <li><a href="#transactions" data-toggle="tab">Transactions</a></li>
         </ul>
         <div class="tab-content">

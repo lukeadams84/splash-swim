@@ -38,13 +38,11 @@
                       <td><?= h($student->firstname) ?></td>
                       <td><?= h($student->lastname) ?></td>
                       <td><?= $student->has('parent') ? $this->Html->link($student->parent->firstname . ' ' . $student->parent->lastname, ['prefix' => 'admin', 'controller' => 'Users', 'action' => 'profile', $student->parent->id]) : '' ?></td>
-                      <td><?= h($student->dob) ?></td>
+                      <td><?php echo date('d-m-Y', strtotime($student->dob)); ?></td>
                       <td><?= h($student->gender) ?></td>
                       <td><?= h($student->created) ?></td>
                       <td class="actions">
                           <?= $this->Html->link(__('View'), ['action' => 'profile', $student->id]) ?>
-                          <?= $this->Html->link(__('Edit'), ['action' => 'edit', $student->id]) ?>
-                          <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $student->id], ['confirm' => __('Are you sure you want to delete # {0}?', $student->id)]) ?>
                       </td>
                   </tr>
                   <?php endforeach; ?>

@@ -62,11 +62,7 @@ class StudentsController extends AdminController
                     ]
                   ]
               ],
-              'Achievements' => [
-                'sort' => [
-                  'StudentsAchievements.created' => 'DESC'
-                ]
-              ]
+              'Achievements'
             ]
         ]);
 
@@ -80,12 +76,19 @@ class StudentsController extends AdminController
           $courses = $this->Students->Coursegroups->find('all', ['contain' => ['Swimclasses', 'Students', 'Classevents' => ['Venues', 'conditions' => ['classdate >' => Date::now() ]]]]);
         }
         $this->set(compact('student', 'courses'));
-        $this->set('_serialize', ['student', 'courses']);
     }
 
-    public function enroll($id = null)
+    public function goals($id = null)
     {
+      $achievements = $this->Students->Achievements->find('all', [
+        'contain' => [
+          'Goals' => [
+            'Students'
+          ]
+        ]
+      ]);
 
+      $this->set(compact('achievements'));
     }
 
     /**

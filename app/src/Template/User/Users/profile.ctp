@@ -4,8 +4,7 @@
     User Profile
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Examples</a></li>
+    <li><a href="/user/dash"><i class="fa fa-dashboard"></i> Home</a></li>
     <li class="active">User profile</li>
   </ol>
 </section>
@@ -27,17 +26,13 @@
 
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Registered children</b> <a class="pull-right">0</a>
+              <b>Registered children</b> <a href="/user/users/students" class="pull-right"><?php echo count($user['students']); ?></a>
             </li>
             <li class="list-group-item">
               <b>Email Address</b> <a class="pull-right"><?php echo $user['email']; ?></a>
             </li>
             <li class="list-group-item">
               <b>Phone</b> <a class="pull-right"><?php echo $user['phone']; ?></a>
-            </li>
-
-            <li class="list-group-item">
-              <b>Edit details</b> <a href="/admin/users/edit/<?php echo $user['id']; ?>" class="pull-right">Edit</a>
             </li>
           </ul>
 
@@ -50,14 +45,16 @@
       <!-- About Me Box -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Address</h3>
+          <h3 class="box-title"><i class="fa fa-book margin-r-5"></i>Address</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <strong><i class="fa fa-book margin-r-5"></i> Address 1</strong>
-
           <p class="text-muted">
-            <?php echo $user['address1']; ?>
+            <?php echo $user['address1']; ?><br>
+            <?php if(!empty($user['address2'])) { echo $user['address2'] . '<br>'; } else { ""; }; ?>
+            <?php echo $user['town']; ?><br>
+            <?php echo $user['county']; ?><br>
+            <?php if(!empty($user['postcode'])) { echo $user['postcode'] . '<br>'; } else { ""; }; ?>
           </p>
 
 
@@ -71,165 +68,77 @@
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#children" data-toggle="tab">Children</a></li>
-          <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-          <li><a href="#settings" data-toggle="tab">Settings</a></li>
+          <li><a href="#settings" data-toggle="tab">Edit</a></li>
+          <li><a href="#password" data-toggle="tab">Password</a></li>
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="children">
+            <div class="box-body no-padding">
+              <table class="table">
+                <tr>
+                  <th>Name</th>
+                  <th>Date of Birth</th>
+                  <th>Gender</th>
+                  <th></th>
+                </tr>
+                <?php foreach($user['students'] as $student) { ?>
+                  <?php $then = new DateTime($student['dob']);
+                  $now = new DateTime('today'); ?>
 
+                <tr>
+                  <td><?php echo $student['firstname'] . ' ' . $student['lastname']; ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($student['dob'])) . " (" . $then->diff($now)->y . ")"; ?></td>
+                  <td><?php echo $student['gender']; ?></td>
+                  <td><a href="/user/students/profile/<?php echo $student['id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Profile</button></a>
+                </tr>
+
+                <?php }  ?>
+              </table>
+            </div>
           </div>
           <!-- /.tab-pane -->
-          <div class="tab-pane" id="timeline">
-            <!-- The timeline -->
-            <ul class="timeline timeline-inverse">
-              <!-- timeline time label -->
-              <li class="time-label">
-                    <span class="bg-red">
-                      10 Feb. 2014
-                    </span>
-              </li>
-              <!-- /.timeline-label -->
-              <!-- timeline item -->
-              <li>
-                <i class="fa fa-envelope bg-blue"></i>
 
-                <div class="timeline-item">
-                  <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                  <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                  <div class="timeline-body">
-                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                    quora plaxo ideeli hulu weebly balihoo...
-                  </div>
-                  <div class="timeline-footer">
-                    <a class="btn btn-primary btn-xs">Read more</a>
-                    <a class="btn btn-danger btn-xs">Delete</a>
-                  </div>
-                </div>
-              </li>
-              <!-- END timeline item -->
-              <!-- timeline item -->
-              <li>
-                <i class="fa fa-user bg-aqua"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                  <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                  </h3>
-                </div>
-              </li>
-              <!-- END timeline item -->
-              <!-- timeline item -->
-              <li>
-                <i class="fa fa-comments bg-yellow"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                  <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                  <div class="timeline-body">
-                    Take me to your leader!
-                    Switzerland is small and neutral!
-                    We are more like Germany, ambitious and misunderstood!
-                  </div>
-                  <div class="timeline-footer">
-                    <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                  </div>
-                </div>
-              </li>
-              <!-- END timeline item -->
-              <!-- timeline time label -->
-              <li class="time-label">
-                    <span class="bg-green">
-                      3 Jan. 2014
-                    </span>
-              </li>
-              <!-- /.timeline-label -->
-              <!-- timeline item -->
-              <li>
-                <i class="fa fa-camera bg-purple"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                  <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                  <div class="timeline-body">
-                    <img src="http://placehold.it/150x100" alt="..." class="margin">
-                    <img src="http://placehold.it/150x100" alt="..." class="margin">
-                    <img src="http://placehold.it/150x100" alt="..." class="margin">
-                    <img src="http://placehold.it/150x100" alt="..." class="margin">
-                  </div>
-                </div>
-              </li>
-              <!-- END timeline item -->
-              <li>
-                <i class="fa fa-clock-o bg-gray"></i>
-              </li>
-            </ul>
-          </div>
-          <!-- /.tab-pane -->
 
           <div class="tab-pane" id="settings">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
+              <form method="post" class="form-horizontal" action="/user/users/edit/<?php echo $user['id'];?>">
 
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                <div class="box-body">
+                  <h4>Edit your profile</h4>
 
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                  <?php
+                    echo $this->Form->input('email', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['email'] ));
+                    echo $this->Form->input('firstname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['firstname'] ));
+                    echo $this->Form->input('lastname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['lastname'] ));
+                    echo $this->Form->input('address1', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['address1'] ));
+                    echo $this->Form->input('address2', array('class' => 'form-control', 'type' => 'text', 'value' => $user['address2'] ));
+                    echo $this->Form->input('town', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['town'] ));
+                    echo $this->Form->input('county', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['county'] ));
+                    echo $this->Form->input('postcode', array('class' => 'form-control', 'type' => 'text', 'value' => $user['postcode'] ));
+                    echo $this->Form->input('phone', array('class' => 'form-control', 'type' => 'tel', 'required' => true, 'value' => $user['phone'] ));
+                  ?>
+                  <p></p>
+                  <?php echo $this->Form->submit('Submit', array('class' => 'btn btn-primary btn-block btn-flat')); ?>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
+              </form>
+          </div>
 
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+          <div class="tab-pane" id="password">
+              <form method="post" class="form-horizontal" action="/user/users/changePassword/<?php echo $user['id'];?>">
 
-                <div class="col-sm-10">
-                  <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                <div class="box-body">
+                  <h4>Change your password</h4>
 
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Submit</button>
-                </div>
-              </div>
-            </form>
+                  <?php
+                    echo $this->Form->input('password', array('class' => 'form-control', 'type' => 'password', 'required' => true ));
+                    echo $this->Form->input('password_confirm', array('class' => 'form-control', 'type' => 'password', 'required' => true ));
+                  ?>
+                  <p></p>
+                  <?php echo $this->Form->submit('Submit', array('class' => 'btn btn-primary btn-block btn-flat')); ?>
+              </form>
           </div>
           <!-- /.tab-pane -->
         </div>
+
         <!-- /.tab-content -->
       </div>
       <!-- /.nav-tabs-custom -->

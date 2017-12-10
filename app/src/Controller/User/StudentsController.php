@@ -59,11 +59,7 @@ class StudentsController extends UserController
                     ]
                   ]
               ],
-              'Achievements' => [
-                'sort' => [
-                  'StudentsAchievements.created' => 'DESC'
-                ]
-              ]
+              'Achievements'
             ]
         ]);
 

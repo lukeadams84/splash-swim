@@ -9,7 +9,7 @@ if (file_exists($file)) {
 ?>
 <ul class="sidebar-menu">
     <li class="header">MAIN NAVIGATION</li>
-    <li><a href="<?php echo $this->Url->build('/admin'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="<?php echo $this->Url->build('/admin/dash'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
     <li class="treeview">
         <a href="#">
             <i class="fa fa-users"></i>

@@ -11,27 +11,10 @@ class TransactionsController extends UserController
 {
     public function index()
     {
-        $this->paginate = [ 'contain' => [ 'Students' => ['conditions' => ['parent_id' => $this->request->session()->read('Auth.User.id')]], 'Coursegroups' ]];
+        $this->paginate = [ 'conditions' => ['Transactions.user_id' => $this->request->session()->read('Auth.User.id') ], 'contain' => [ 'Students', 'Coursegroups' ]];
         $transactions = $this->paginate($this->Transactions);
-
-
-
         $this->set(compact('transactions'));
         $this->set('_serialize', ['transactions']);
-    }
-
-    public function payment($data = null)
-    {
-      $user = TableRegistry::get('Users');
-      $user = $user->get($this->request->session()->read('Auth.User.id'), [
-          'contain' => ['Students']
-      ]);
-      $coursegroup = TableRegistry::get('Coursegroups');
-      $coursegroup = $coursegroup->find('all', ['contain' => ['Swimclasses', 'Classevents']]);
-
-      $this->set(compact('user', 'coursegroup'));
-      $this->set('_serialize', ['user', 'coursegroup']);
-
     }
 
     public function checkout()
@@ -52,7 +35,8 @@ class TransactionsController extends UserController
               'streetAddress' => $this->request->session()->read('Auth.User.address1'),
               'extendedAddress' => $this->request->session()->read('Auth.User.address2'),
               'locality' => $this->request->session()->read('Auth.User.town'),
-              'region' => $this->request->session()->read('Auth.User.county')
+              'region' => $this->request->session()->read('Auth.User.county'),
+              'postalCode' => $this->request->session()->read('Auth.User.postcode'),
           ],
           'options' => [
               'submitForSettlement' => true,
@@ -68,6 +52,7 @@ class TransactionsController extends UserController
             $tndata = [
               'student_id' =>  $data['chosenstudent'],
               'coursegroup_id' => $data['chosencourse'],
+              'user_id' => $this->request->session()->read('Auth.User.id'),
               'braintreeid' => $transaction->id,
               'amount' => $data['amount'],
               'processorresponse' => $transaction->processorResponseText,
@@ -82,7 +67,7 @@ class TransactionsController extends UserController
                 $studentTable->Coursegroups->link($student, [$course]);
                 $this->Transactions->save($tn);
                 $this->Flash->success(__('Thank you, your payment was successful.'));
-                return $this->redirect('/user/transactions');
+                return $this->redirect('/user/students/profile/' . $data['chosenstudent']);
             } else {
                 $this->Transactions->save($tn);
                 $this->Flash->error(__('The transaction failed.' . $status));

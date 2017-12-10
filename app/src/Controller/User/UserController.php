@@ -59,8 +59,8 @@ class UserController extends AppController
                    ]
              ],'loginRedirect' => [
                  'prefix' => 'user',
-                 'controller' => 'pages',
-                 'action' => 'view'
+                 'controller' => 'dash',
+                 'action' => 'index'
              ],
         ]);
 

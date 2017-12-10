@@ -71,23 +71,35 @@ class UsersController extends AdminController
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+     public function edit($id = null)
+     {
+         $user = $this->Users->get($id);
+         if ($this->request->is(['patch', 'post', 'put'])) {
+             $user = $this->Users->patchEntity($user, $this->request->getData());
+             if ($this->Users->save($user)) {
+                 $this->Flash->success(__('Thanks for updating your profile!'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        }
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
-    }
+                 return $this->redirect( $this->referer(), true  );
+             }
+             $this->Flash->error(__('The user could not be saved. Please, try again.'));
+             return $this->redirect( $this->referer(), true );
+         }
+     }
+
+     public function changePassword($id = null)
+     {
+         $user = $this->Users->get($id);
+         if ($this->request->is(['patch', 'post', 'put'])) {
+             $user = $this->Users->patchEntity($user, $this->request->getData());
+             if ($this->Users->save($user)) {
+                 $this->Flash->success(__('Your password has been changed, please use this the next time you login.'));
+
+                 return $this->redirect( $this->referer(), true  );
+             }
+             $this->Flash->error(__('The password could not be saved, please check your entry.'));
+             return $this->redirect( $this->referer(), true );
+         }
+     }
 
     /**
      * Delete method

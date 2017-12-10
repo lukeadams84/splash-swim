@@ -55,6 +55,11 @@ class StudentsTable extends Table
             'targetForeignKey' => 'achievement_id',
             'joinTable' => 'students_achievements'
         ]);
+        $this->belongsToMany('Goals', [
+            'foreignKey' => 'student_id',
+            'targetForeignKey' => 'goal_id',
+            'joinTable' => 'students_goals'
+        ]);
         $this->belongsToMany('Coursegroups', [
             'foreignKey' => 'student_id',
             'targetForeignKey' => 'coursegroup_id',

@@ -93,6 +93,11 @@ class AdminController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['splash']);
+        $this->Auth->allow(['/admin/users/login']);
+        if($this->request->session()->read('Auth.User.role') != 'admin')
+        {
+            $this->Auth->logout();
+            $this->redirect('/user/users/login');
+        }
     }
 }

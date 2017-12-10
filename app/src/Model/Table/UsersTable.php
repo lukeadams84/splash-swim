@@ -41,6 +41,10 @@ class UsersTable extends Table
             'className' => 'Students',
             'foreignKey' => 'parent_id'
         ]);
+        $this->hasMany('Transactions', [
+            'className' => 'Transactions',
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**

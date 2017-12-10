@@ -63,7 +63,6 @@
                 <h4>Complete your profile to get started.</h4>
 
                 <?php
-                  //echo $this->Form->hidden('id', array('value' => $user['id']));
                   echo $this->Form->input('email', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['email'] ));
                   echo $this->Form->input('firstname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['firstname'] ));
                   echo $this->Form->input('lastname', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['lastname'] ));
@@ -71,6 +70,7 @@
                   echo $this->Form->input('address2', array('class' => 'form-control', 'type' => 'text', 'value' => $user['address2'] ));
                   echo $this->Form->input('town', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['town'] ));
                   echo $this->Form->input('county', array('class' => 'form-control', 'type' => 'text', 'required' => true, 'value' => $user['county'] ));
+                  echo $this->Form->input('postcode', array('class' => 'form-control', 'type' => 'text', 'value' => $user['postcode'] ));
                   echo $this->Form->input('phone', array('class' => 'form-control', 'type' => 'tel', 'required' => true, 'value' => $user['phone'] ));
                 ?>
                 <p></p>
@@ -105,7 +105,8 @@
           </div>
           <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="info-box">
-              <span class="info-box-icon bg-red"><i class="fa fa-plus-square"></i></span>
+              <a href="/user/swimclasses">
+                <span class="info-box-icon bg-red"><i class="fa fa-plus-square"></i></span>
 
               <div class="info-box-content">
                 <h5>Then...</h5>
@@ -113,6 +114,7 @@
               </div>
               <!-- /.info-box-content -->
             </div>
+          </a>
           <!-- /.info-box -->
           </div>
         </div>
@@ -129,14 +131,16 @@
         <!-- /.info-box -->
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
+          <a href="/user/transactions">
+            <div class="info-box">
+              <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">View payments</span>
-            </div>
+              <div class="info-box-content">
+                <span class="info-box-text">View payments</span>
+              </div>
             <!-- /.info-box-content -->
-          </div>
+            </div>
+          </a>
         <!-- /.info-box -->
         </div>
       </div>

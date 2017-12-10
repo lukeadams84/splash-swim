@@ -20,7 +20,7 @@ class AchievementsController extends AdminController
     {
         $this->paginate = [
           'contain' => ['Awardbody', 'Goals']
-      ];
+        ];
 
         $achievements = $this->paginate($this->Achievements);
 

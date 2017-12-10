@@ -141,6 +141,10 @@
             </div>
             </div>
             <div class="form-group">
+              <label>Time selector</label>
+              <input type="checkbox" id="10:00" value="10:00"> 10:00
+            </div>
+            <div class="form-group">
               <label>Class length (mins)</label>
 
 

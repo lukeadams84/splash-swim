@@ -42,10 +42,7 @@
             <li class="list-group-item">
               <b>Joined</b> <a class="pull-right"><?php echo $this->Time->format($student['created'], "dd MMM yyyy"); ?></a>
             </li>
-
-            <li class="list-group-item">
-              <b>Edit details</b> <a href="/admin/students/edit/<?php echo $student['id']; ?>" class="pull-right">Edit</a>
-            </li>
+          
           </ul>
 
 
@@ -61,7 +58,7 @@
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
-          <!--<li><a href="#awards" data-toggle="tab">Awards</a></li>-->
+          <li><a href="#awards" data-toggle="tab">Awards</a></li>
           <li><a href="#enrolled" data-toggle="tab">Enrolled Courses</a></li>
           <li><a href="#courses" data-toggle="tab">Available Courses</a></li>
           <li><a href="#transactions" data-toggle="tab">Transactions</a></li>
@@ -122,7 +119,7 @@
           </div>
           <!-- /.tab-pane -->
 
-          <!--<div class="tab-pane" id="awards">
+          <div class="tab-pane" id="awards">
             <div class="box-body no-padding">
               <table class="table">
                 <tr>
@@ -172,20 +169,20 @@
                   <td><span class="badge bg-green">90%</span></td>
                 </tr>
               </table>
-            </div>-->
+            </div>
             <!-- /.box-body -->
-          <!--</div>-->
+          </div>
           <!-- /.tab-pane -->
 
           <div class="tab-pane" id="enrolled">
             <div class="box-body no-padding">
               <table class="table">
                 <tr>
-                  <th>Class Name</th>
+                  <th>Class level</th>
                   <th>Venue</th>
-                  <th>Week Number</th>
-                  <th>Class Date</th>
-                  <th>Class Time</th>
+                  <th>Week #</th>
+                  <th>Next class</th>
+                  <th>Class time</th>
                 </tr>
                 <?php foreach($student['coursegroups'] as $course) {
 
@@ -203,8 +200,8 @@
                   <td><?php echo $course['swimclass']['name']; ?></td>
                   <td><?php echo $course['classevents']['0']['venue']['name']; ?></td>
                   <td><?php echo $course['classevents']['0']['weeknum']; ?></td>
-                  <td><?php echo $course['classevents']['0']['classdate']; ?></td>
-                  <td><?php echo $course['classevents']['0']['time']; ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($course['classevents']['0']['classdate'])); ?></td>
+                  <td><?php echo date('H:i A', strtotime($course['classevents']['0']['time'])); ?></td>
                 </tr>
 
                 <?php } } ?>

@@ -32,31 +32,39 @@ class SwimclassesController extends AdminController
     {
         if ($this->request->is('post')) {
             $precalculate = $this->request->getData();
-            $dataarray = [];
-            $coursegroup = TableRegistry::get('Coursegroups');
-            $newcoursegroup = $coursegroup->newEntity([
-              'swimclass_id' => $precalculate['swimclass_id'],
-              'price' => $precalculate['amount'],
-              'courselength' => $precalculate['length'],
-            ]);
-            $last_id = $coursegroup->save($newcoursegroup);
-
-            for ($i = 1; $i <= $precalculate['length']; $i++) {
-                $dataarray[$i] = $precalculate;
-                $dataarray[$i]['coursegroup_id'] = $last_id->id;
-                $dataarray[$i]['weeknum'] = $i;
-                $dataarray[$i]['time'] = date('Y-m-d H:i:s', strtotime($precalculate['time']));
-                $dataarray[$i]['duration'] = $precalculate['duration'];
+            if(empty($precalculate['timeselect'])) {
+              $this->Flash->error(__('Please select at least one timeslot'));
+              return $this->redirect(['prefix' => 'admin', 'controller' => 'swimclasses', 'action' => 'view', $precalculate['swimclass_id']]);
             }
+            else {
+              foreach ($precalculate['timeselect'] as $instance) {
+                $dataarray = [];
+                $coursegroup = TableRegistry::get('Coursegroups');
+                $newcoursegroup = $coursegroup->newEntity([
+                  'swimclass_id' => $precalculate['swimclass_id'],
+                  'price' => $precalculate['amount'],
+                  'courselength' => $precalculate['length'],
+                ]);
+                $last_id = $coursegroup->save($newcoursegroup);
 
-            for ($z = 1; $z <= $precalculate['length']; $z++) {
-                $date = date($dataarray[$z]['classdate']);
-                $dataarray[$z]['classdate'] = gmdate("Y-m-d", strtotime("+" . ($z * 7) -7 . " days", strtotime($date)));
-            }
-            $classevents = TableRegistry::get('Classevents');
-            foreach ($dataarray as $data) {
-                $classevent = $classevents->newEntity($data);
-                $classevents->save($classevent);
+                for ($i = 1; $i <= $precalculate['length']; $i++) {
+                    $dataarray[$i] = $precalculate;
+                    $dataarray[$i]['coursegroup_id'] = $last_id->id;
+                    $dataarray[$i]['weeknum'] = $i;
+                    $dataarray[$i]['time'] = date('Y-m-d H:i:s', strtotime($instance)); //$precalculate['time']
+                    $dataarray[$i]['duration'] = $precalculate['duration'];
+                }
+
+                for ($z = 1; $z <= $precalculate['length']; $z++) {
+                    $date = date($dataarray[$z]['classdate']);
+                    $dataarray[$z]['classdate'] = gmdate("Y-m-d", strtotime("+" . ($z * 7) -7 . " days", strtotime($date)));
+                }
+                $classevents = TableRegistry::get('Classevents');
+                foreach ($dataarray as $data) {
+                    $classevent = $classevents->newEntity($data);
+                    $classevents->save($classevent);
+                }
+              }
             }
             $this->Flash->success(__('The class has been scheduled.'));
             return $this->redirect(['prefix' => 'admin', 'controller' => 'swimclasses', 'action' => 'view', $data['swimclass_id']]);

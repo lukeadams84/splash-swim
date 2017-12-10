@@ -27,7 +27,8 @@ class TransactionsTable extends Table
         $this->addBehavior('Timestamp');
         $this->belongsTo('Students');
         $this->belongsTo('Coursegroups');
-        
+        $this->belongsTo('Users');
+
     }
 
 

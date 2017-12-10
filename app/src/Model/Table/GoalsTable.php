@@ -19,6 +19,7 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
+
 class GoalsTable extends Table
 {
 
@@ -38,6 +39,11 @@ class GoalsTable extends Table
 
         $this->addBehavior('Timestamp');
         $this->belongsTo('Achievements');
+        $this->belongsToMany('Students', [
+            'foreignKey' => 'goal_id',
+            'targetForeignKey' => 'student_id',
+            'joinTable' => 'students_goals'
+        ]);
 
     }
 
