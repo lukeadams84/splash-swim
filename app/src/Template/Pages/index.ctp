@@ -1,7 +1,7 @@
 <a name="1"></a>
 <div class="ribbon l-box-lrg pure-g">
     <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-        <img  alt="File Icons" class="pure-img-responsive" src="img/awards/Oct1_transparent-300x244.png">
+        <img  alt="File Icons" class="pure-img-responsive" src="/img/awards/Oct1_transparent-300x244.png">
     </div>
     <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
         <h2 class="content-head content-head-ribbon">Swimming Lessons Your Kids Will Love!</h2>

@@ -22,6 +22,7 @@ use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\Core\Configure;
 
 /**
  * The default class to use for all routes
@@ -67,12 +68,12 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'index']);
-
+     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'splash']);
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+
 
     /**
      * Connect catchall routes for all controllers.
