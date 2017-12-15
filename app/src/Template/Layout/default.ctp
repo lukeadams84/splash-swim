@@ -54,9 +54,6 @@ $cakeDescription = 'Splash Swim Schools';
 
     <?php if($this->request->here != '/') { echo $this->element('home/nav2'); } ?>
 
-
-
-
     <?php if ($this->request->here == '/pages/index') { ?>
     <div class="splash-container">
         <div class="splash">

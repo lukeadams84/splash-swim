@@ -39,6 +39,7 @@ class StudentsController extends UserController
         $student = $this->Students->get($id, [
             'contain' => [
               'Parent',
+              'Goals',
               'Transactions' => [
                 'Coursegroups' => [
                   'Swimclasses' => [
@@ -62,6 +63,12 @@ class StudentsController extends UserController
               'Achievements'
             ]
         ]);
+        $achievements = $this->Students->Achievements->find('all', ['contain' => ['Goals']]);
+        $achieved = $this->Students->Goals->find();
+        $achieved->matching('Students', function ($q) use ($id) {
+            return $q->where(['Students.id' => $id ]);
+        });
+        $achieved = $achieved->toArray();
 
         $courselist = $student['coursegroups'];
         $courselist = Hash::extract($courselist, '{n}.id');
@@ -71,14 +78,11 @@ class StudentsController extends UserController
         } else {
             $courses = $this->Students->Coursegroups->find('all', ['contain' => ['Swimclasses', 'Students', 'Classevents' => ['Venues', 'conditions' => ['classdate >' => Date::now() ]]]]);
         }
-        $this->set(compact('student', 'courses'));
+        $this->set(compact('student', 'achieved', 'courses', 'achievements'));
         $this->set('_serialize', ['student', 'courses']);
     }
 
-    public function enroll($id = null)
-    {
-    }
-
+  
     /**
      * Add method
      *

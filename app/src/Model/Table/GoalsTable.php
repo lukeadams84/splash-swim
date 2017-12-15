@@ -39,10 +39,13 @@ class GoalsTable extends Table
 
         $this->addBehavior('Timestamp');
         $this->belongsTo('Achievements');
-        $this->belongsToMany('Students', [
+        /*$this->belongsToMany('Students', [
             'foreignKey' => 'goal_id',
             'targetForeignKey' => 'student_id',
             'joinTable' => 'students_goals'
+        ]);*/
+        $this->belongsToMany('Students', [
+          'through' => 'StudentsGoals',
         ]);
 
     }

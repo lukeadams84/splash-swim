@@ -65,9 +65,15 @@ class StudentsController extends AdminController
               'Achievements'
             ]
         ]);
-
+        $achievements = $this->Students->Achievements->find('all', ['contain' => ['Goals']]);
         $courselist = $student['coursegroups'];
         $courselist = Hash::extract($courselist, '{n}.id');
+
+        $achieved = $this->Students->Goals->find();
+        $achieved->matching('Students', function ($q) use ($id) {
+            return $q->where(['Students.id' => $id ]);
+        });
+        $achieved = $achieved->toArray();
 
         if($courselist) {
         $courses = $this->Students->Coursegroups->find('all', ['contain' => ['Swimclasses', 'Students', 'Classevents' => ['Venues', 'conditions' => ['classdate >' => Date::now() ]]], 'conditions' => ['Coursegroups.id not in' => $courselist]]);
@@ -75,20 +81,44 @@ class StudentsController extends AdminController
         else {
           $courses = $this->Students->Coursegroups->find('all', ['contain' => ['Swimclasses', 'Students', 'Classevents' => ['Venues', 'conditions' => ['classdate >' => Date::now() ]]]]);
         }
-        $this->set(compact('student', 'courses'));
+        $this->set(compact('student', 'achieved', 'courses', 'achievements'));
     }
 
-    public function goals($id = null)
+    public function goals($id)
     {
-      $achievements = $this->Students->Achievements->find('all', [
-        'contain' => [
-          'Goals' => [
-            'Students'
-          ]
-        ]
-      ]);
 
-      $this->set(compact('achievements'));
+      $achievements = $this->Students->Achievements->find('all', ['contain' => ['Students' => ['conditions' => ['student_id' => $id]]]]);
+      $goals = $this->Students->Goals->find('all', ['contain' => ['Students' => ['conditions' => ['student_id =' => $id ]]]]);
+
+      $studentid = $id;
+
+      $this->set(compact('achievements', 'goals', 'studentid'));
+    }
+
+    public function completegoal($studentid, $goalid)
+    {
+      $studentTable = TableRegistry::get('Students');
+      $goalTable = TableRegistry::get('Goals');
+      $student = $studentTable->get($studentid);
+      $goal = $goalTable->get($goalid);
+      $studentTable->Goals->link($student, [$goal]);
+
+      return $this->redirect('/admin/students/goals/' . $studentid);
+
+
+    }
+
+    public function completeachievement($studentid, $achievementid)
+    {
+      $studentTable = TableRegistry::get('Students');
+      $achievementTable = TableRegistry::get('Achievements');
+      $student = $studentTable->get($studentid);
+      $achievement = $achievementTable->get($achievementid);
+      $studentTable->Achievements->link($student, [$achievement]);
+
+      return $this->redirect('/admin/students/goals/' . $studentid);
+
+
     }
 
     /**

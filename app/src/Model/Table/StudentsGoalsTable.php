@@ -19,7 +19,8 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class AchievementsTable extends Table
+
+class StudentsGoalsTable extends Table
 {
 
     /**
@@ -32,34 +33,15 @@ class AchievementsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('achievements');
-        $this->setDisplayField('award');
+        $this->setTable('students_goals');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->belongsTo('Awardbody');
-        $this->hasMany('Goals');
-        $this->belongsToMany('Students', [
-            'through' => 'StudentsAchievements'
-        ]);
+        $this->belongsTo('Students');
+        $this->belongsTo('Goals');
+
+
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
 
-        $validator
-            ->requirePresence('award', 'create')
-            ->notEmpty('award');
-
-        return $validator;
-    }
 }

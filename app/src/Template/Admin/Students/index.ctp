@@ -42,7 +42,7 @@
                       <td><?= h($student->gender) ?></td>
                       <td><?= h($student->created) ?></td>
                       <td class="actions">
-                          <?= $this->Html->link(__('View'), ['action' => 'profile', $student->id]) ?>
+                          <a href="/admin/students/profile/<?php echo $student->id;?>"><button type="button" class="btn btn-xs btn-block btn-primary">Profile</button></a>
                       </td>
                   </tr>
                   <?php endforeach; ?>
