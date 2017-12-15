@@ -82,7 +82,18 @@ class StudentsController extends UserController
         $this->set('_serialize', ['student', 'courses']);
     }
 
-  
+    public function goals($id)
+    {
+
+      $achievements = $this->Students->Achievements->find('all', ['contain' => ['Students' => ['conditions' => ['student_id' => $id]]]]);
+      $goals = $this->Students->Goals->find('all', ['contain' => ['Students' => ['conditions' => ['student_id =' => $id ]]]]);
+
+      $studentid = $id;
+
+      $this->set(compact('achievements', 'goals', 'studentid'));
+    }
+
+
     /**
      * Add method
      *

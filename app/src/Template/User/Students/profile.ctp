@@ -42,6 +42,9 @@
             <li class="list-group-item">
               <b>Joined</b> <a class="pull-right"><?php echo $this->Time->format($student['created'], "dd MMM yyyy"); ?></a>
             </li>
+            <li class="list-group-item">
+              <a href="/user/students/goals/<?php echo $student->id;?>"><button type="button" class="btn btn-xs btn-block btn-primary">Goal progress</button></a>
+            </li>
 
           </ul>
 
@@ -145,6 +148,7 @@
                         $level = 'yellow';
                         $bar = 'warning';
                     }
+                    if($count > 0 ) {
                   ?>
                   <tr>
                     <td><?php echo $achievement['award']; ?></td>
@@ -156,7 +160,7 @@
                     <td><span class="badge bg-<?php echo $level; ?>"><?php echo $progress; ?>%</span></td>
                   </tr>
 
-                <?php } ?>
+                <?php } } ?>
 
               </table>
             </div>
