@@ -60,10 +60,12 @@ class SwimclassesController extends AdminController
                     $dataarray[$z]['classdate'] = gmdate("Y-m-d", strtotime("+" . ($z * 7) -7 . " days", strtotime($date)));
                 }
                 $classevents = TableRegistry::get('Classevents');
-                foreach ($dataarray as $data) {
+                $entities = $classevents->newEntities($dataarray);
+                $result = $classevents->saveMany($entities);
+                /*foreach ($dataarray as $data) {
                     $classevent = $classevents->newEntity($data);
                     $classevents->save($classevent);
-                }
+                }*/
               }
             }
             $this->Flash->success(__('The class has been scheduled.'));
