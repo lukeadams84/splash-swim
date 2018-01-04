@@ -69,7 +69,7 @@ class SwimclassesController extends AdminController
               }
             }
             $this->Flash->success(__('The class has been scheduled.'));
-            return $this->redirect(['prefix' => 'admin', 'controller' => 'swimclasses', 'action' => 'view', $data['swimclass_id']]);
+            return $this->redirect(['prefix' => 'admin', 'controller' => 'swimclasses', 'action' => 'view', $precalculate['swimclass_id']]);
         }
     }
 

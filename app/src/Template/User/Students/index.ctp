@@ -29,7 +29,6 @@
                         <th scope="col">Gender</th>
                         <th scope="col">Level</th>
                         <th scope="col">Requirements</th>
-                        <th scope="col">Created</th>
                         <th scope="col" class="actions"><?= __('Actions') ?></th>
                     </tr>
                 </thead>
@@ -42,7 +41,6 @@
                       <td><?php echo $student['gender']; ?></td>
                       <td><?php echo $student['level']; ?></td>
                       <td><?php echo $student['requirements']; ?></td>
-                      <td><?php echo date('d-m-Y', strtotime($student['created'])); ?></td>
                       <td class="actions">
                           <a href="/user/students/profile/<?php echo $student->id;?>"><button type="button" class="btn btn-xs btn-block btn-primary">Profile</button></a>
                       </td>

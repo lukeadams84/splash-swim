@@ -121,6 +121,7 @@
         <div class="row">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <div class="info-box">
+            <a href="/user/students/awards">
             <span class="info-box-icon bg-yellow"><i class="fa fa-trophy"></i></span>
 
             <div class="info-box-content">
@@ -128,6 +129,7 @@
             </div>
             <!-- /.info-box-content -->
           </div>
+        </a>
         <!-- /.info-box -->
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">

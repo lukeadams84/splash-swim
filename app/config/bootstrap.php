@@ -233,8 +233,8 @@ if (Configure::read('debug')) {
 Configure::write('Theme', [
     'title' => 'Splash Swim School',
     'logo' => [
-        'mini' => 'Splash',
-        'large' => '<b>Splash Swimschool</b>'
+        'mini' => '<img src="/apple-touch-icon-57x57.png" />',
+        'large' => '<img src="/img/logos/splash-sm-300.png" style="width:120px;" />'
     ],
     'login' => [
         'show_remember' => true,

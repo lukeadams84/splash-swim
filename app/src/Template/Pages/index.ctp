@@ -32,10 +32,10 @@
                 </p>
             </div>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-                <h3 class="content-subhead">
+                <a href="/front/venues" style="text-decoration:none;"><h3 class="content-subhead">
                     <i class="fa fa-map-marker"></i>
                     Our Locations
-                </h3>
+                </h3></a>
                 <p>
                     Come to a Splash Swim School near you. We are conveniently located at DW Sports Fitness and City Hotel in Derry.
                 </p>
@@ -55,7 +55,7 @@
                     FAQ's
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    For frequently asked questions and answers, please see this page: <a href="/front/faqs" style="text-decoration: none;">FAQs</a>.
                 </p>
             </div>
         </div>
@@ -67,37 +67,35 @@
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked">
+                <form method="post" class="pure-form pure-form-stacked" action="/contact">
+
                     <fieldset>
 
                         <label for="name">Your Name</label>
-                        <input id="name" type="text" placeholder="Your Name">
+                        <input id="name" name="name" type="text" placeholder="Your Name">
 
 
                         <label for="email">Your Email</label>
-                        <input id="email" type="email" placeholder="Your Email">
+                        <input id="email" name="email" type="email" placeholder="Your Email">
 
-                        <label for="password">Your Password</label>
-                        <input id="password" type="password" placeholder="Your Password">
+                        <label for="body">Details</label>
+                        <textarea class="pure-input-1" name="body" id="body" rows="4" placeholder=""></textarea>
 
-                        <button type="submit" class="pure-button">Sign Up</button>
+                        <button type="submit" class="pure-button">Contact Us</button>
                     </fieldset>
                 </form>
             </div>
 
             <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
-                <h4>Contact Us</h4>
+                <h4>Register</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
+                    From our unique portal, you can track your childs progress, book and pay for your courses and manage your swim profile. Use the button below to get started!
                 </p>
+                <a href="/user/users/register"><button type="button" class="pure-button">Register</button></a>
 
                 <h4>More Information</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
+                    See our <a href="/front/faqs" style="text-decoration: none;">FAQs</a> for more information or drop us a message with the form.
                 </p>
             </div>
         </div>

@@ -42,6 +42,16 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/user/swimclasses/registered'); ?>"><i class="fa fa-list"></i> Registered courses</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-trophy"></i>
+            <span>Awards</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="<?php echo $this->Url->build('/user/swimclasses'); ?>"><i class="fa fa-list"></i> List</a></li>
+        </ul>
+    </li>
     <?php if($this->request->session()->read('Auth.User.role') == 'admin') { ?>
       <li><a href="<?php echo $this->Url->build('/admin/dash'); ?>"><i class="fa fa-dashboard"></i> Admin Panel</a></li>
     <?php } ?>

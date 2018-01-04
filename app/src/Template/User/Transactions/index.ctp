@@ -30,7 +30,6 @@
                         <th scope="col">Result</th>
                         <th scope="col">Last 4 card digits</th>
                         <th scope="col">Card Type</th>
-                        <th scope="col" class="actions"><?= __('Actions') ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,8 +42,6 @@
                       <td><?= h($transaction->processorresponse) ?></td>
                       <td><?= h($transaction->last4) ?></td>
                       <td><?= h($transaction->cardtype) ?></td>
-                      <td class="actions">
-                      </td>
                   </tr>
                   <?php endforeach; ?>
               </tbody>

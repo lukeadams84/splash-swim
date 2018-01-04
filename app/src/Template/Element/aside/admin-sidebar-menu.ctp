@@ -44,6 +44,7 @@ if (file_exists($file)) {
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Classes</span>
+                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo $this->Url->build('/admin/classevents'); ?>"><i class="fa fa-list"></i> Scheduled Classes</a></li>
@@ -73,7 +74,27 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/admin/achievements/add'); ?>"><i class="fa fa-plus-circle"></i> Add</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-trophy"></i>
+            <span>Settings</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="treeview">
+              <a href="#">
+                  <i class="fa fa-files-o"></i>
+                  <span>FAQs</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="<?php echo $this->Url->build('/admin/faqs'); ?>"><i class="fa fa-list"></i> List</a></li>
+                  <li><a href="<?php echo $this->Url->build('/admin/faqs/add'); ?>"><i class="fa fa-plus"></i> Add</a></li>
+              </ul>
+          </li>
+        </ul>
+    </li>
 
-    <li><a href="<?php echo $this->Url->build('/pages/debug'); ?>"><i class="fa fa-bug"></i> Debug</a></li>
+    <li><a href="<?php echo $this->Url->build('/user/dash'); ?>"><i class="fa fa-dashboard"></i> User Dashboard</a></li>
 </ul>
 <?php } ?>

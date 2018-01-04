@@ -93,6 +93,23 @@ class StudentsController extends UserController
       $this->set(compact('achievements', 'goals', 'studentid'));
     }
 
+    public function awards()
+    {
+      $students = $this->Students->find('ownedBy', ['parent' => $this->request->session()->read('Auth.User'), 'contain' => ['Achievements']]);
+      $achievements = $this->Students->Achievements->find('all', ['contain' => ['Goals']]);
+      $achieved = $this->Students->Goals->find();
+
+      $studentlist = $this->Students->find('ownedBy', ['parent' => $this->request->session()->read('Auth.User'), 'fields' => 'id', 'contain' => ['Achievements']]);
+
+      $achieved->matching('Students', function ($q) use ($studentlist) {
+          return $q->where(['Students.id in' => $studentlist ]);
+      });
+      $achieved = $achieved->toArray();
+
+
+      $this->set(compact('students', 'achieved', 'achievements'));
+    }
+
 
     /**
      * Add method
