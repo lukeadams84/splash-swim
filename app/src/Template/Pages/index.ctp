@@ -1,3 +1,5 @@
+
+
 <a name="1"></a>
 <div class="ribbon l-box-lrg pure-g">
     <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
@@ -67,6 +69,7 @@
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+              <?php $this->Flash->render();  ?>
                 <form method="post" class="pure-form pure-form-stacked" action="/contact">
 
                     <fieldset>

@@ -61,24 +61,65 @@
         </div>
         <!-- ./col -->
       </div>
+
+
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-12">
+          <!-- small box -->
+
+          <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right">
+              <li class="pull-left header"><i class="fa fa-inbox"></i> Contacts</li>
+            </ul>
+            <div class="tab-content no-padding">
+              <table id="list" class="table table-bordered table-hover">
+                  <thead>
+                      <tr>
+                        <th scope="col">Source</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Body</th>
+                        <th scope="col">Read</th>
+                        <th scope="col">Created</th>
+                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($contacts as $contact): ?>
+                  <tr>
+                      <td><?= h($contact->source) ?></td>
+                      <td><?= h($contact->recordedname) ?></td>
+                      <td><?= h($contact->email) ?></td>
+                      <td><?= h($contact->body) ?></td>
+                      <td><?= h($contact->read) ?></td>
+                      <td><?php echo date('d-m-Y', strtotime($contact->created)); ?></td>
+                      <td class="actions">
+
+                      </td>
+                  </tr>
+                  <?php endforeach; ?>
+              </tbody>
+          </table>
+            </div>
+          </div>
+
+        </div>
+        <!-- ./col -->
+      </div>
+
+
       <!-- /.row -->
       <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-6 col-md-6 col-xs-12 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
 
-          <!-- /.nav-tabs-custom -->
-
-
-
-
-
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-
-      </div>
       <!-- /.row (main row) -->
 
     </section>
@@ -218,7 +259,7 @@
     areaChart.Line(areaChartData, areaChartOptions);
 
 
-    
+
 
     </script>
     <?php  $this->end(); ?>

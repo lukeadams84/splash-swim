@@ -11,3 +11,14 @@ CREATE TABLE sessions (
   expires INT(11) NOT NULL,
   PRIMARY KEY  (id)
 );
+
+CREATE TABLE contacts (
+	id INTEGER NOT NULL DEFAULT unique_rowid(),
+  email STRING(100) NOT NULL,
+	body STRING NOT NULL,
+	created TIMESTAMP WITH TIME ZONE NOT NULL,
+	modified TIMESTAMP WITH TIME ZONE NOT NULL,
+	source STRING(50) NULL,
+	CONSTRAINT "primary" PRIMARY KEY (id ASC),
+	FAMILY "primary" (id, email, body, created, modified, source)
+);

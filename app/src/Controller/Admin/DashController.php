@@ -15,6 +15,9 @@ class DashController extends AdminController
     $studentTable = TableRegistry::get('Students');
     $userTable = TableRegistry::get('Users');
     $transactionsTable = TableRegistry::get('Transactions');
+    $contactsTable = TableRegistry::get('Contacts');
+
+    $contacts = $contactsTable->find('all');
 
     $userquery = $userTable->find('all')
       ->where(['Users.role =' => 'parent']);
@@ -39,14 +42,14 @@ class DashController extends AdminController
     $transactions = $tquery->toArray();
 
 
-    $this->set(compact('students', 'users', 'transactions'));
-    $this->set('_serialize', ['students', 'users', 'transactions']);
+    $this->set(compact('students', 'users', 'transactions', 'contacts'));
+    $this->set('_serialize', ['students', 'users', 'transactions', 'contacts']);
 
 
   }
 
   public function chart() {
-    
+
   }
 }
 

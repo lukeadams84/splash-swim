@@ -90,8 +90,8 @@ $cakeDescription = 'Splash Swim Schools';
   <?php } ?>
 
 
+    
 
-    <?= $this->Flash->render() ?>
     <?= $this->fetch('content') ?>
 
 

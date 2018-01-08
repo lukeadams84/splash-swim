@@ -3,8 +3,9 @@ namespace App\Controller\User;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Braintree;
-require("../vendor/braintree/braintree_php/lib/autoload.php");
+use Cake\Mailer\MailerAwareTrait;
+//use Braintree;
+//require("../vendor/braintree/braintree_php/lib/autoload.php");
 
 
 /**
@@ -15,7 +16,7 @@ require("../vendor/braintree/braintree_php/lib/autoload.php");
 class UsersController extends UserController
 {
 
-  //var $scaffold;
+  use MailerAwareTrait;
 
   # needed for 'register'
   var $helpers = array('Html', 'Form');
@@ -88,6 +89,7 @@ class UsersController extends UserController
       if ($this->request->is('post')) {
           $user = $this->Users->patchEntity($user, $this->request->getData());
           if ($this->Users->save($user)) {
+              $this->getMailer('User')->send('welcome', [$user]);
               $this->Flash->success(__('Your account has been created, please sign in below.'));
 
               return $this->redirect('/user/users/login');
