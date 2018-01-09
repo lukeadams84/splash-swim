@@ -5,10 +5,15 @@ use App\Controller\AppController;
 use Cake\I18n\Date;
 use Cake\Utility\Hash;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use Braintree;
 
 class TransactionsController extends UserController
 {
+
+  use MailerAwareTrait;
+
     public function index()
     {
         $this->paginate = [ 'conditions' => ['Transactions.user_id' => $this->request->session()->read('Auth.User.id') ], 'contain' => [ 'Students', 'Coursegroups' ]];
@@ -21,6 +26,7 @@ class TransactionsController extends UserController
     {
         $studentTable = TableRegistry::get('Students');
         $coursegroupTable = TableRegistry::get('Coursegroups');
+        $swimclassTable = TableRegistry::get('Swimclass');
         $data = $this->request->data();
         $result = Braintree\Transaction::sale([
           'amount'              => $data['amount'],
@@ -57,15 +63,27 @@ class TransactionsController extends UserController
               'amount' => $data['amount'],
               'processorresponse' => $transaction->processorResponseText,
               'last4' => $transaction->creditCard['last4'],
-              'cardtype' => $transaction->creditCard['cardType']
+              'cardtype' => $transaction->creditCard['cardType'],
+              'type' => 'card'
             ];
             $tn = $this->Transactions->patchEntity($tn, $tndata);
 
             if ($status == "Success") {
                 $student = $studentTable->get($data['chosenstudent']);
                 $course = $coursegroupTable->get($data['chosencourse']);
+                $swimclass = $swimclassTable->get($course['swimclass_id']);
+                $swimclass = $swimclass->toArray();
                 $studentTable->Coursegroups->link($student, [$course]);
                 $this->Transactions->save($tn);
+                $maildata = [
+                  'email' => $this->request->session()->read('Auth.User.email'),
+                  'user' => $this->request->session()->read('Auth.User.firstname'),
+                  'course' => $swimclass['name'],
+                  'student' => $student['firstname'],
+                  'price' => $data['amount'],
+                  'paymenttype' => 'card'
+                ];
+                $this->getMailer('User')->send('booking', [$maildata]);
                 $this->Flash->success(__('Thank you, your payment was successful.'));
                 return $this->redirect('/user/students/profile/' . $data['chosenstudent']);
             } else {

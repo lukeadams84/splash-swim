@@ -238,7 +238,7 @@
                   <th>Class</th>
                   <th>Date</th>
                   <th>Price</th>
-
+                  <th>Status</th>
                 </tr>
                 <?php foreach($student['transactions'] as $transaction) { ?>
 
@@ -246,6 +246,7 @@
                     <td><?php echo $transaction['coursegroup']['swimclass']['name']; ?> </td>
                     <td><?php echo $transaction['created']; ?></td>
                     <td><?php echo $transaction['amount']; ?></td>
+                    <td><?php echo $transaction['processorresponse']; ?></td>
                   </tr>
 
                 <?php } ?>

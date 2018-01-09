@@ -103,7 +103,7 @@
                       <td><?= h($contact->read) ?></td>
                       <td><?php echo date('d-m-Y', strtotime($contact->created)); ?></td>
                       <td class="actions">
-
+                        <a href="/contact/read/<?php echo $contact->id;?>"><button type="button" class="btn btn-xs btn-block btn-primary">Mark read</button></a>
                       </td>
                   </tr>
                   <?php endforeach; ?>

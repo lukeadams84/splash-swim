@@ -30,6 +30,24 @@ class UserMailer extends Mailer
             ->set(['token' => $user->token]);
     }
 
+    public function booking($data)
+    {
+      $userDataArr = [
+          'user' => $data['user'],
+          'student' => $data['student'],
+          'course' => $data['course'],
+          'paymenttype' => $data['paymenttype'],
+          'price' => $data['price']
+      ];
+
+      $this
+          ->to($data['email'])
+          ->subject(sprintf('Thanks for your class booking for %s', $data['student']))
+          ->emailFormat('html')
+          ->template('booking', 'booking')
+          ->viewVars($userDataArr);
+    }
+
 
 }
 

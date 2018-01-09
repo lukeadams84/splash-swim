@@ -23,7 +23,6 @@ class FrontController extends AppController
       ]
     ]);
 
-
     $this->set(compact('swimclasses'));
 
   }

@@ -24,7 +24,6 @@
                     <thead>
                         <tr>
 
-                            <th scope="col">Username</th>
                             <th scope="col">Firstname</th>
                             <th scope="col">Lastname</th>
                             <th scope="col">Email Address</th>
@@ -36,7 +35,6 @@
                     <tbody>
                         <?php foreach ($users as $user): ?>
                         <tr>
-                            <td><?= h($user->username) ?></td>
                             <td><?= h($user->firstname) ?></td>
                             <td><?= h($user->lastname) ?></td>
                             <td><?= h($user->email) ?></td>

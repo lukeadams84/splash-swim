@@ -39,15 +39,20 @@
             <li class="list-group-item">
               <b>Course Length</b> <a class="pull-right"><?php echo $class['duration'] . ' weeks'; ?></a>
             </li>
+        </ul>
+            <a href="/admin/swimclasses/book/<?php echo $class['id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a>
+            <p></p>
+            <p>Courses in progress that have spaces</p>
+            <a href="/admin/swimclasses/bookip/<?php echo $class['id']; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">In progress</button></a>
 
-          </ul>
+
 
 
         </div>
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
-      
+
 
 
     </div>

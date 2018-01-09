@@ -3,6 +3,8 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Date;
+use Cake\Utility\Hash;
 
 /**
  * Classes Controller
@@ -156,5 +158,97 @@ class SwimclassesController extends AdminController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function book($id = null)
+    {
+
+
+      $students = TableRegistry::get('Students');
+      $students = $students->find('all');
+      $courses = $this->Swimclasses->get($id, [
+          'contain' => [
+            'Classevents' => [
+                'conditions' => ['weeknum =' => 1, 'classdate >' => Date::now() ],
+                'sort' => ['classdate' => 'ASC'],
+                'Coursegroups' => [
+                  'Students'
+                ],
+                'Venues'
+            ]
+          ]
+      ]);
+      $this->set(compact('courses', 'students'));
+
+    }
+
+    public function bookcash($id = null)
+    {
+
+
+      $students = TableRegistry::get('Students');
+      $students = $students->find('all');
+      $courses = $this->Swimclasses->get($id, [
+          'contain' => [
+            'Classevents' => [
+                'conditions' => ['weeknum =' => 1, 'classdate >' => Date::now() ],
+                'sort' => ['classdate' => 'ASC'],
+                'Coursegroups' => [
+                  'Students'
+                ],
+                'Venues'
+            ]
+          ]
+      ]);
+      $this->set(compact('courses', 'students'));
+
+    }
+
+    public function bookip($id = null)
+    {
+
+
+
+      $students = TableRegistry::get('Students');
+      $students = $students->find('all');
+
+      $courses = $this->Swimclasses->get($id, [
+          'contain' => [
+            'Coursegroups' => [
+              'Students',
+              'Classevents' => [
+                  'conditions' => ['weeknum !=' => 1, 'classdate >' => Date::now() ],
+                  'sort' => ['classdate' => 'ASC'],
+                  'Venues'
+                ],
+            ]
+          ]
+      ]);
+      $this->set(compact('students', 'courses'));
+
+    }
+
+    public function bookipcash($id = null)
+    {
+
+
+
+      $students = TableRegistry::get('Students');
+      $students = $students->find('all');
+
+      $courses = $this->Swimclasses->get($id, [
+          'contain' => [
+            'Coursegroups' => [
+              'Students',
+              'Classevents' => [
+                  'conditions' => ['weeknum !=' => 1, 'classdate >' => Date::now() ],
+                  'sort' => ['classdate' => 'ASC'],
+                  'Venues'
+                ],
+            ]
+          ]
+      ]);
+      $this->set(compact('students', 'courses'));
+
     }
 }

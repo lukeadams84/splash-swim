@@ -31,6 +31,19 @@
 ?>
 
 <h2 class="content-head is-center">Classes and Groups</h2>
+<div class="pure-g">
+    <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+      <p>We offer a range of classes for all abilities and for all age groups. Pricing is listed below on a course basis. The award programs fit against the class types and we advance students based on their achievements and progress.</p>
+      <p>Our classes are tailored with qualified instructors and we limit the number of students in each class to ensure the appropriate attention is provided to everyone.</p>
+      <p>To register a student in one of our classes, please use the button below to create an account. If you have an account already, please use the login button.</p>
+      <a href="/user/users/register"><button type="button" class="pure-button">Register</button></a>
+      <a href="/user/users/login"><button type="button" class="pure-button">Login</button></a>
+    </div>
+    <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+
+      <img src="/img/girlholdingbreath.jpg" class="pure-img-responsive">
+    </div>
+</div>
 
 <div class="ribbon l-box-lrg pure-g">
         <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
@@ -48,7 +61,6 @@
                   <td>Length</td>
                   <td>Spaces</td>
                   <td>Price</td>
-                  <td></td>
                 </tr>
               </thead>
               <tbody>
@@ -58,7 +70,6 @@
                   <td>6 weeks</td>
                   <td>12</td>
                   <td>£45</td>
-                  <td><a class="pure-button" href="#">Sign up</a></td>
                 </tr>
                 <tr>
                   <td>Toddlers</td>
@@ -66,7 +77,6 @@
                   <td>6 weeks</td>
                   <td>12</td>
                   <td>£45</td>
-                  <td><a class="pure-button" href="#">Sign up</a></td>
                 </tr>
               </tbody>
             </table>
@@ -90,7 +100,6 @@
                       <td>Length</td>
                       <td>Spaces</td>
                       <td>Price</td>
-                      <td></td>
                     </tr>
                   </thead>
                   <tbody>
@@ -100,7 +109,6 @@
                       <td>12 weeks</td>
                       <td>6</td>
                       <td>£90</td>
-                      <td><a class="pure-button" href="#">Sign up</a></td>
                     </tr>
                     <tr>
                       <td>Intermediate</td>
@@ -108,7 +116,6 @@
                       <td>12 weeks</td>
                       <td>6</td>
                       <td>£90</td>
-                      <td><a class="pure-button" href="#">Sign up</a></td>
                     </tr>
                     <tr>
                       <td>Advanced</td>
@@ -116,7 +123,6 @@
                       <td>12 weeks</td>
                       <td>6</td>
                       <td>£90</td>
-                      <td><a class="pure-button" href="#">Sign up</a></td>
                     </tr>
                   </tbody>
                 </table>

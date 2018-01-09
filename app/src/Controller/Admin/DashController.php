@@ -17,7 +17,7 @@ class DashController extends AdminController
     $transactionsTable = TableRegistry::get('Transactions');
     $contactsTable = TableRegistry::get('Contacts');
 
-    $contacts = $contactsTable->find('all');
+    $contacts = $contactsTable->find('all', ['conditions' => ['read =' => 0]]);
 
     $userquery = $userTable->find('all')
       ->where(['Users.role =' => 'parent']);

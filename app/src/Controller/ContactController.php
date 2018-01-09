@@ -38,4 +38,17 @@ public function index()
     }
     $this->set('contact', $contact);
   }
+
+public function read($id) {
+  $contactsTable = TableRegistry::get('Contacts');
+  $contactRecord = $contactsTable->get($id);
+  $data = ['Contacts' => [ 'read' => 1]];
+  $contactsTable->patchEntity($contactRecord, $data, ['validate' => false ]);
+  if($contactsTable->save($contactRecord))
+  {
+      $this->Flash->success('Message marked as read');
+      return $this->redirect('/admin/dash');
+  }
+
+}
 }

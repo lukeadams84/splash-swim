@@ -23,7 +23,8 @@
               <table id="list" class="table table-bordered table-hover">
                   <thead>
                       <tr>
-                        <th scope="col">Transaction ID</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Student</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Date</th>
@@ -36,14 +37,19 @@
                 <tbody>
                   <?php foreach ($transactions as $transaction): ?>
                   <tr>
+                      <td><?= h($transaction->type) ?></td>
                       <td><?= h($transaction->braintreeid) ?></td>
                       <td><?= h($transaction->student->firstname) ?></td>
                       <td><?= h($transaction->amount) ?></td>
-                      <td><?= h($transaction->created) ?></td>
+                      <td><?= h($transaction->modified) ?></td>
                       <td><?= h($transaction->processorresponse) ?></td>
                       <td><?= h($transaction->last4) ?></td>
                       <td><?= h($transaction->cardtype) ?></td>
                       <td class="actions">
+                        <?php if($transaction['processorresponse'] != 'Refunded') { ?>
+                          <a href="/admin/transactions/refund/<?php echo $transaction->id;?>"><button type="button" class="btn btn-xs btn-block btn-primary">Refund</button></a>
+                      <?php } else { echo 'Refunded £' . $transaction['refund']; } ?>
+
                       </td>
                   </tr>
                   <?php endforeach; ?>
