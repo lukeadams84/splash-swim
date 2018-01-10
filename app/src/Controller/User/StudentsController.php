@@ -126,7 +126,7 @@ class StudentsController extends UserController
             if ($this->Students->save($student)) {
                 $this->Flash->success(__('The student has been created.'));
 
-                return $this->redirect(['prefix' => 'user', 'controller' => 'Students', 'action' => 'index']);
+                return $this->redirect('/user/dash');
             }
             $this->Flash->error(__('The student could not be saved. Please, try again.'));
             print_r($student);

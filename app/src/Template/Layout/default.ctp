@@ -75,7 +75,7 @@ $cakeDescription = 'Splash Swim Schools';
     <?php echo $this->element('home/nav2');  ?>
 
     <?php if ($this->request->here == '/') { ?>
-    <div class="splash-container">
+    <div class="splash-container" id="splash">
         <div class="splash">
             <h1 class="splash-head"></h1>
             <p class="splash-subhead">
@@ -90,7 +90,7 @@ $cakeDescription = 'Splash Swim Schools';
   <?php } ?>
 
 
-    
+
 
     <?= $this->fetch('content') ?>
 
