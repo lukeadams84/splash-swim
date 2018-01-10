@@ -32,7 +32,7 @@ $email->profile('default');
 
 $email->from('online@splashswimschools.co.uk')
 ->replyTo([$data['email']])
-->to('luke@thirteen-37.com')
+->to('hello@thirteen-37.com')
 ->subject('Splash Contact Form')
 ->send(['Email from: ' . $data['email'] . '    ' . $data['body']]);
 return true;
