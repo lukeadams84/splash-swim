@@ -69,7 +69,7 @@
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-              <?php $this->Flash->render();  ?>
+                <h4 class="content-head is-center">Contact Us</h4>
                 <form method="post" class="pure-form pure-form-stacked" action="/contact">
 
                     <fieldset>
