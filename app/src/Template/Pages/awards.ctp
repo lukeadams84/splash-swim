@@ -2,9 +2,15 @@
 
 
 <div class="content">
-    <h2 class="content-head is-center">ILSP Awards</h2>
-
+    <h2 class="content-head is-center">Award programme and curriculum</h2>
     <div class="pure-g">
+        <div class="l-box-lrg pure-u-1 pure-u-md-1">
+            <p>We offer a curriculum based on the ILSP Award scheme throughout our classes. This is a well rounded program used by millions of children worldwide. This is a comprehensive program that helps </p>
+            <p>The program recognises that students learn to swim at many different ages and progress at varying paces. The program is focused on ensuring that at no stage should safety, quality standards or consistency be compromised.</p>
+            <p>The link to the ILSP website is below.</p>
+            <a href="https://www.sta.co.uk/international-learn-to-swim-programme/" target="_blank"><button type="button" class="pure-button">ILSP Website</button></a>
+        </div>
+
         <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
 
           <h3 style="margin-bottom: 10px;">STARFISH Series</h3>
