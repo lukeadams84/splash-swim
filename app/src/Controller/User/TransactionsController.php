@@ -28,8 +28,6 @@ class TransactionsController extends UserController
         $coursegroupTable = TableRegistry::get('Coursegroups');
         $swimclassTable = TableRegistry::get('Swimclass');
         $data = $this->request->data();
-        print_r($data);
-        die();
         $result = Braintree\Transaction::sale([
           'amount'              => $data['amount'],
           'paymentMethodNonce'  => $data['payment_method_nonce'],
@@ -55,9 +53,6 @@ class TransactionsController extends UserController
               'addBillingAddressToPaymentMethod' => true
           ]
       ]);
-
-
-
         if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
             $tn = $this->Transactions->newEntity();
