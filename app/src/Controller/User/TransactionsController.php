@@ -31,9 +31,6 @@ class TransactionsController extends UserController
         $result = Braintree\Transaction::sale([
           'amount'              => $data['amount'],
           'paymentMethodNonce'  => $data['payment_method_nonce'],
-          'descriptor' => [
-            'name' => 'SplashSwim*Booking'
-          ],
           'customer' => [
              'firstName' => $this->request->session()->read('Auth.User.firstname'),
              'lastName' => $this->request->session()->read('Auth.User.lastname')
@@ -53,6 +50,9 @@ class TransactionsController extends UserController
               'addBillingAddressToPaymentMethod' => true
           ]
       ]);
+
+
+
         if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
             $tn = $this->Transactions->newEntity();
