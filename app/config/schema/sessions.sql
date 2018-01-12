@@ -12,13 +12,12 @@ CREATE TABLE sessions (
   PRIMARY KEY  (id)
 );
 
-CREATE TABLE contacts (
+CREATE TABLE notes (
 	id INTEGER NOT NULL DEFAULT unique_rowid(),
-  email STRING(100) NOT NULL,
+  student_id integer NOT NULL,
 	body STRING NOT NULL,
 	created TIMESTAMP WITH TIME ZONE NOT NULL,
 	modified TIMESTAMP WITH TIME ZONE NOT NULL,
-	source STRING(50) NULL,
 	CONSTRAINT "primary" PRIMARY KEY (id ASC),
-	FAMILY "primary" (id, email, body, created, modified, source)
+	FAMILY "primary" (id, student_id, body, created, modified)
 );

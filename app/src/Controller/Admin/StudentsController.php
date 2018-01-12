@@ -42,6 +42,7 @@ class StudentsController extends AdminController
         $student = $this->Students->get($id, [
             'contain' => [
               'Parent',
+              'Notes',
               'Transactions' => [
                 'Coursegroups' => [
                   'Swimclasses' => [
@@ -118,6 +119,23 @@ class StudentsController extends AdminController
 
       return $this->redirect('/admin/students/goals/' . $studentid);
 
+    }
+
+    public function addnote() {
+      if ($this->request->is('post')) {
+        $data = $this->request->getData();
+        $note = $this->Students->Notes->newEntity();
+        $notedata = [
+          'student_id' =>  $data['student_id'],
+          'body' => $data['body'],
+          'instructor' => $data['instructor']
+        ];
+        $note = $this->Students->Notes->patchEntity($note, $notedata);
+        if($this->Students->Notes->save($note)) {
+          $this->Flash->success(__('The note has been added'));
+          return $this->redirect('/admin/students/profile/' . $data['student_id']);
+        }
+      }
 
     }
 
@@ -169,23 +187,5 @@ class StudentsController extends AdminController
         $this->set('_serialize', ['student']);
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Student id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $student = $this->Students->get($id);
-        if ($this->Students->delete($student)) {
-            $this->Flash->success(__('The student has been deleted.'));
-        } else {
-            $this->Flash->error(__('The student could not be deleted. Please, try again.'));
-        }
 
-        return $this->redirect(['action' => 'index']);
-    }
 }

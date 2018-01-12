@@ -50,14 +50,12 @@ class StudentsTable extends Table
         $this->hasMany('Transactions', [
             'foreignKey' => 'student_id'
         ]);
+        $this->hasMany('Notes', [
+            'foreignKey' => 'student_id'
+        ]);
         $this->belongsToMany('Achievements', [
             'through' => 'StudentsAchievements'
         ]);
-        /*$this->belongsToMany('Goals', [
-            'foreignKey' => 'student_id',
-            'targetForeignKey' => 'goal_id',
-            'joinTable' => 'students_goals'
-        ]);*/
         $this->belongsToMany('Goals', [
           'through' => 'StudentsGoals',
         ]);

@@ -102,7 +102,7 @@
     </div>
 
     <input id="nonce" name="payment_method_nonce" type="hidden" />
-    <button class="button btn btn-block btn-primary" type="submit" id="submit" disabled><span>Checkout</span></button>
+    <button class="button btn btn-block btn-primary" type="submit" id="button" disabled><span>Checkout</span></button>
   </div>
 </div>
 </div>
@@ -168,7 +168,7 @@
     document.getElementById("chosencourse").value = elem.value;
     document.getElementById(elem.value).style.display = "block";
     document.getElementById("amount").value = document.getElementById(elem.value + "price").value;
-    document.getElementById("submit").disabled = false;
+    document.getElementById("button").disabled = false;
   }
 
 </script>

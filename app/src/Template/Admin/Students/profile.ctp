@@ -54,7 +54,35 @@
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Add a note</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form method="post" action="/admin/students/addnote">
 
+          <div class="box-body">
+            <div class="form-group">
+              <label for="duration">Instructor</label>
+              <input type="text" class="form-control" name="instructor" id="instructor" value="">
+            </div>
+            <div class="form-group">
+              <label for="duration">Message</label>
+              <textarea class="form-control" name="body" id="body"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control hidden" name="student_id" id="student_id" value="<?php echo $student['id']; ?>">
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Add Note</button>
+          </div>
+        </form>
+        </div>
 
     </div>
     <!-- /.col -->
@@ -64,8 +92,8 @@
           <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
           <li><a href="#awards" data-toggle="tab">Awards</a></li>
           <li><a href="#enrolled" data-toggle="tab">Enrolled Courses</a></li>
-          <li><a href="#courses" data-toggle="tab">Avail Courses</a></li>
           <li><a href="#transactions" data-toggle="tab">Transactions</a></li>
+          <li><a href="#notes" data-toggle="tab">Notes</a></li>
         </ul>
         <div class="tab-content">
           <div class=" active tab-pane" id="timeline">
@@ -205,32 +233,7 @@
           </div>
           <!-- /.tab-pane -->
 
-          <div class="tab-pane" id="courses">
-            <div class="box-body no-padding">
-              <table class="table">
-                <tr>
-                  <th>Next Class</th>
-                  <th>Class Name</th>
-                  <th>Venue</th>
-                  <th>Week Number</th>
-                  <th>Spaces</th>
-                </tr>
-                <?php foreach($courses as $course) { ?>
-                  <?php if($course['classevents']) { ?>
-                  <tr>
-                    <td><?php echo $course['classevents']['0']['classdate']; ?></td>
-                    <td><?php echo $course['swimclass']['name']; ?></td>
-                    <td><?php echo $course['classevents']['0']['venue']['name']; ?></td>
-                    <td><?php echo $course['classevents']['0']['weeknum']; ?></td>
-                    <td><?php echo ($course['classevents']['0']['spaces'] - count($course['students'])); ?></td>
-                  </tr>
-                <?php } ?>
-                <?php } ?>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.tab-pane -->
+
           <div class="tab-pane" id="transactions">
             <div class="box-body no-padding">
               <table class="table">
@@ -254,6 +257,31 @@
             </div>
             <!-- /.box-body -->
           </div>
+
+          <div class="tab-pane" id="notes">
+            <div class="box-body no-padding">
+              <table class="table">
+                <tr>
+                  <th>Date</th>
+                  <th>instructor</th>
+                  <th>Message</th>
+                  <th></th>
+                </tr>
+                <?php foreach($student['notes'] as $note) { ?>
+
+                  <tr>
+                    <td><?php echo date('d-m-Y', strtotime($note['created'])); ?> </td>
+                    <td><?php echo $note['instructor']; ?></td>
+                    <td><?php echo $note['body']; ?></td>
+                    <td></td>
+                  </tr>
+
+                <?php } ?>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
         </div>
         <!-- /.tab-content -->
       </div>
@@ -262,6 +290,5 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
-
 </section>
 <!-- /.content -->
