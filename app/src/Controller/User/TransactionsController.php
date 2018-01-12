@@ -51,8 +51,6 @@ class TransactionsController extends UserController
           ]
       ]);
 
-
-
         if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
             $tn = $this->Transactions->newEntity();
