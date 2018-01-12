@@ -19,7 +19,7 @@
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <?php echo $this->Html->image('user4-128x128.jpg', array('class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User profile picture')); ?>
+          <?php echo $this->Html->image('swimming-pool-icon-png-3.png', array('class' => 'profile-user-img img-responsive img-circle', 'alt' => 'User profile picture')); ?>
 
           <h3 class="profile-username text-center"><?php echo $student['firstname'] . ' ' . $student['lastname']; ?></h3>
           <ul class="list-group list-group-unbordered">
