@@ -49,7 +49,7 @@ if (file_exists($file)) {
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="<?php echo $this->Url->build('/user/swimclasses'); ?>"><i class="fa fa-list"></i> List</a></li>
+            <li><a href="<?php echo $this->Url->build('/user/students/awards'); ?>"><i class="fa fa-list"></i> List</a></li>
         </ul>
     </li>
     <?php if($this->request->session()->read('Auth.User.role') == 'admin') { ?>
