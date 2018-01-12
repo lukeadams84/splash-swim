@@ -32,7 +32,7 @@ class TransactionsController extends UserController
           'amount'              => $data['amount'],
           'paymentMethodNonce'  => $data['payment_method_nonce'],
           'descriptor' => [
-            'name' => 'SplashSwimSchool*Booking'
+            'name' => 'SplashSwim*Booking'
           ],
           'customer' => [
              'firstName' => $this->request->session()->read('Auth.User.firstname'),
@@ -91,7 +91,7 @@ class TransactionsController extends UserController
             } else {
                 $this->Transactions->save($tn);
                 $this->Flash->error(__('The transaction failed.' . $status));
-                return $this->redirect('/user/transactions/payment');
+                return $this->redirect('/user/students/profile/' . $data['chosenstudent']);
             }
         } else {
             $errorString = "";
@@ -99,7 +99,7 @@ class TransactionsController extends UserController
             foreach ($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
                 $this->Flash->error(__('The transaction failed.' . $errorString));
-                return $this->redirect('/user/transactions/payment');
+                return $this->redirect('/user/students/profile/' . $data['chosenstudent']);
             }
         }
     }
