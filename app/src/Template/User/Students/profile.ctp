@@ -63,7 +63,6 @@
           <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
           <li><a href="#awards" data-toggle="tab">Awards</a></li>
           <li><a href="#enrolled" data-toggle="tab">Enrolled Courses</a></li>
-          <li><a href="#courses" data-toggle="tab">Available Courses</a></li>
           <li><a href="#transactions" data-toggle="tab">Transactions</a></li>
         </ul>
         <div class="tab-content">
@@ -204,32 +203,7 @@
           </div>
           <!-- /.tab-pane -->
 
-          <div class="tab-pane" id="courses">
-            <div class="box-body no-padding">
-              <table class="table">
-                <tr>
-                  <th>Next Class</th>
-                  <th>Class Name</th>
-                  <th>Venue</th>
-                  <th>Week Number</th>
-                  <th>Spaces</th>
-                </tr>
-                <?php foreach($courses as $course) {
-                  if($course['classevents']) { ?>
-                  <tr>
-                    <td><?php echo $this->Time->format($course['classevents']['0']['classdate'], 'dd/M/yy') . ' - ' . $this->Time->format($course['classevents']['0']['time'], 'HH:mm'); ?></td>
-                    <td><?php echo $course['swimclass']['name']; ?></td>
-                    <td><?php echo $course['classevents']['0']['venue']['name']; ?></td>
-                    <td><?php echo $course['classevents']['0']['weeknum']; ?></td>
-                    <td><?php echo ($course['classevents']['0']['spaces'] - count($course['students'])); ?></td>
-                  </tr>
-                <?php } }?>
 
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.tab-pane -->
           <div class="tab-pane" id="transactions">
             <div class="box-body no-padding">
               <table class="table">

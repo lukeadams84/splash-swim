@@ -38,8 +38,7 @@
                 <td><?= h($class->duration) ?></td>
                 <td><?= h($class->price) ?></td>
                 <td class="actions">
-
-                    <a href="/user/swimclasses/view/<?php echo $class->id;?>"><button type="button" class="btn btn-xs btn-block btn-primary">View</button></a>
+                    <a href="/user/swimclasses/book/<?php echo $class->id; ?>"><button type="button" class="btn btn-xs btn-block btn-primary">Book</button></a>
 
                 </td>
             </tr>

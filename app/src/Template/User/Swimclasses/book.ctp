@@ -3,7 +3,17 @@
   <div class="row">
     <form method="post" id="payment-form" action="/user/transactions/checkout">
     <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Want to book an in-progress course?</h3>
+        </div>
 
+  <div class="box-body">
+    <section>
+        <a href="/user/swimclasses/bookip/<?php echo $courses['id']; ?>"><button type="button" class="btn btn-block btn-primary" style="width:50%;">In progress</button></a>
+    </section>
+  </div>
+  </div>
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Book a class</h3>
@@ -11,8 +21,6 @@
 
   <div class="box-body">
     <section>
-
-
       <div class="form-group">
         <label>Student</label>
         <select class="form-control" id="studentselect" onchange="updateStudent(this)">
@@ -91,7 +99,7 @@
     </div>
 
     <input id="nonce" name="payment_method_nonce" type="hidden" />
-    <button class="button" type="submit"><span>Checkout</span></button>
+    <button class="button btn btn-block btn-primary" type="submit" id="submit" disabled><span>Checkout</span></button>
   </div>
 </div>
 </div>
@@ -99,6 +107,9 @@
 
 </form>
 </div>
+
+
+
 </section>
 
 <script src="https://js.braintreegateway.com/web/dropin/1.6.1/js/dropin.min.js"></script>
@@ -152,6 +163,7 @@
     }
     document.getElementById("chosencourse").value = elem.value;
     document.getElementById(elem.value).style.display = "block";
+    document.getElementById("submit").disabled = false;
   }
 
 </script>
