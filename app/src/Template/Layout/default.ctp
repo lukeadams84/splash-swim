@@ -98,6 +98,8 @@ $cakeDescription = 'Splash Swim Schools';
 
 </div>
 <?php echo $this->element('home/footer'); ?>
+<?php echo $this->element('gtag'); ?>
+
 
   </body>
 </html>

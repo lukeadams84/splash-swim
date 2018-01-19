@@ -21,3 +21,4 @@
     <!-- /.col -->
   </div>
 </form>
+<?php echo $this->element('gtag'); ?>

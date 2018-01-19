@@ -15,3 +15,5 @@ if (file_exists($file)) {
     reserved.
 </footer>
 <?php } ?>
+
+<?php echo $this->element('gtag'); ?>
