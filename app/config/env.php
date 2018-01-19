@@ -20,23 +20,7 @@ return [
           'schema' => 'splashswim',
           'quoteIdentifiers' => true,
           'log' => true,
-      ],
-      'logs' => [
-          'className' => 'Cake\Database\Connection',
-          'driver' => 'Cake\Database\Driver\Mysql',
-          'persistent' => false,
-          'host' => 'mysql-log',
-          'username' => 'splashuser',
-          'password' => '5FVunvUM!',
-          'database' => 'logs',
-          'encoding' => 'utf8',
-          'timezone' => 'UTC',
-          'flags' => [],
-          'cacheMetadata' => true,
-          'log' => false,
-          'quoteIdentifiers' => true,
-          'url' => env('DATABASE_URL', null),
-      ],
+      ]
   ]
 ]
  ?>

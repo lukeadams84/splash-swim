@@ -110,9 +110,8 @@ class SwimclassesController extends UserController
           'contain' => [
             'Coursegroups' => [
               'Classevents' => [
-                'Venues',
-                'conditions' => ['classdate >' => Date::now() ],
-                ],
+                'Venues'
+              ],
                 'Swimclasses' => [
                   'fields' => [
                     'name'
