@@ -100,6 +100,11 @@
                 <p>
                     See our <a href="/front/faqs" style="text-decoration: none;">FAQs</a> for more information or drop us a message with the form.
                 </p>
+
+                <h4>Terms and Conditions</h4>
+                <p>
+                    See our <a href="/pages/terms" style="text-decoration: none;">Terms</a>, for additional details or any questions, please contact us.
+                </p>
             </div>
         </div>
 

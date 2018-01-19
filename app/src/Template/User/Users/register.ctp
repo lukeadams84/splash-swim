@@ -23,7 +23,7 @@
 }
 
 .modal-window>div {
-  width: 70%;
+  width: 80%;
   position: relative;
   margin: 5% auto;
   padding: 2rem;
