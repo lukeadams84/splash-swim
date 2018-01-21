@@ -22,7 +22,8 @@ class StudentsController extends AdminController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Parent', 'Coursegroups']
+            'contain' => ['Parent', 'Coursegroups'],
+            'limit' => 500
         ];
         $students = $this->paginate($this->Students);
 
