@@ -42,8 +42,6 @@
                             <td><?= h($user->created) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['action' => 'profile', $user->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete user {0}?', $user->username)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
