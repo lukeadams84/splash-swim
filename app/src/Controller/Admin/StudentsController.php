@@ -21,11 +21,12 @@ class StudentsController extends AdminController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Parent', 'Coursegroups'],
-            'limit' => 500
-        ];
-        $students = $this->paginate($this->Students);
+        //$this->paginate = [
+        //    'contain' => ['Parent', 'Coursegroups'],
+        //    'limit' => 500
+        //];
+        //$students = $this->paginate($this->Students);
+        $students = $this->Students->find('all', ['contain' => ['Parent', 'Coursegroups']]);
 
         $this->set(compact('students'));
         $this->set('_serialize', ['students']);

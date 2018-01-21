@@ -22,8 +22,7 @@ class UsersController extends AdminController
     public function index()
     {
 
-        $this->paginate = ['limit' => 500];
-        $users = $this->paginate($this->Users);
+        $users = $this->Users->find('all');
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
     }
