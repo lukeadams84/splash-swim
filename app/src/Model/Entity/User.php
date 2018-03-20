@@ -49,7 +49,8 @@ class User extends Entity
         'role' => true,
         'created' => true,
         'modified' => true,
-        'students' => true
+        'students' => true,
+        'stripeid' => true
     ];
 
     /**

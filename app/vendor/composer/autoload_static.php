@@ -13,6 +13,7 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         'ede59e3a405fb689cd1cebb7bb1db3fb' => __DIR__ . '/..' . '/cakephp/cakephp/src/Collection/functions.php',
         '90236b492da7ca2983a2ad6e33e4152e' => __DIR__ . '/..' . '/cakephp/cakephp/src/I18n/functions.php',
         'b1fc73705e1bec51cd2b20a32cf1c60a' => __DIR__ . '/..' . '/cakephp/cakephp/src/Utility/bootstrap.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
     );
@@ -26,8 +27,17 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         array (
             'XdgBaseDir\\' => 11,
         ),
+        'W' => 
+        array (
+            'WyriHaximus\\TwigView\\' => 21,
+        ),
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
@@ -37,6 +47,7 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Config\\' => 25,
+            'Stripe\\' => 7,
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
             'Seld\\CliPrompt\\' => 15,
@@ -56,6 +67,7 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         'J' => 
         array (
             'JsonSchema\\' => 11,
+            'Jasny\\Twig\\' => 11,
         ),
         'D' => 
         array (
@@ -84,6 +96,7 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
             'Aura\\Intl\\' => 10,
             'App\\Test\\' => 9,
             'App\\' => 4,
+            'Ajgl\\Twig\\Extension\\' => 20,
             'AdminLTE\\' => 9,
         ),
     );
@@ -96,6 +109,18 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         'XdgBaseDir\\' => 
         array (
             0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
+        ),
+        'WyriHaximus\\TwigView\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wyrihaximus/twig-view/src',
+        ),
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -132,6 +157,10 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         'Symfony\\Component\\Config\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/config',
+        ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'Seld\\PharUtils\\' => 
         array (
@@ -172,6 +201,10 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
+        ),
+        'Jasny\\Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jasny/twig-extensions/src',
         ),
         'DebugKit\\Test\\Fixture\\' => 
         array (
@@ -237,13 +270,35 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'Ajgl\\Twig\\Extension\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ajgl/breakpoint-twig-extension/src',
+        ),
         'AdminLTE\\' => 
         array (
             0 => __DIR__ . '/..' . '/maiconpinto/cakephp-adminlte-theme/src',
         ),
     );
 
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/asm89/twig-cache-extension/lib',
+    );
+
     public static $prefixesPsr0 = array (
+        'U' => 
+        array (
+            'Umpirsky\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/umpirsky/twig-php-function/src',
+            ),
+        ),
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
         'J' => 
         array (
             'JakubOnderka\\PhpConsoleHighlighter' => 
@@ -269,6 +324,13 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
                 0 => __DIR__ . '/..' . '/braintree/braintree_php/lib',
             ),
         ),
+        'A' => 
+        array (
+            'Aptoma' => 
+            array (
+                0 => __DIR__ . '/..' . '/aptoma/twig-markdown/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -281,6 +343,7 @@ class ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit6dc977b6160e5b7e7c405a1caf15fb44::$classMap;
 

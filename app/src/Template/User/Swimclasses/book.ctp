@@ -1,7 +1,9 @@
 <section class="content">
 
   <div class="row">
-    <form method="post" id="payment-form" action="/user/transactions/checkout">
+    <script src="https://js.stripe.com/v3/"></script>
+    <form method="post" id="payment-form" action="/user/transactions/charge">
+
     <div class="col-md-6">
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -63,6 +65,7 @@
       </div>
       <?php } ?>
       <input type="hidden" id="chosenstudent" name="chosenstudent">
+      <input type="hidden" id="studentname" name="studentname">
       <input type="hidden" id="chosencourse" name="chosencourse">
 
       <div class="form-group">
@@ -93,13 +96,28 @@
 
     <div class="box-body">
       <section>
+        <div class="form-group">
+        <label for="card-element">
+          Credit or debit card
+        </label>
+        <div id="card-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
 
-    <div class="bt-drop-in-wrapper">
-        <div id="bt-dropin"></div>
-    </div>
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert"></div>
+      </div>
+        <div class="form-group">
+          <label for="amount">
+              <span class="input-label">Payment amount</span>
+              <p><?php echo $this->Number->currency($courses['price'], 'GBP'); ?></p>
 
-    <input id="nonce" name="payment_method_nonce" type="hidden" />
-    <button class="button btn btn-block btn-primary" type="submit" id="button" disabled><span>Checkout</span></button>
+          </label>
+        </div>
+
+        <button class="button btn btn-block btn-primary" id="btnSubmit" disabled><span>Checkout</span></button>
+        
+  </section>
   </div>
 </div>
 </div>
@@ -112,47 +130,72 @@
 
 </section>
 
-<script src="https://js.braintreegateway.com/web/dropin/1.6.1/js/dropin.min.js"></script>
+
 <script>
-    var form = document.querySelector('#payment-form');
-    var client_token = "<?php echo(Braintree\ClientToken::generate()); ?>";
-
-    braintree.dropin.create({
-      authorization: client_token,
-      selector: '#bt-dropin',
-      card: {
-        cvv: true
-      }
-
-    }, function (createErr, instance) {
-      if (createErr) {
-        console.log('Error', createErr);
-        return;
-      }
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        instance.requestPaymentMethod(function (err, payload) {
-          if (err) {
-            console.log('Error', err);
-            return;
-          }
-
-          // Add the nonce to the form and submit
-          document.querySelector('#nonce').value = payload.nonce;
-          form.submit();
-        });
-      });
+// Create a Stripe client.
+var stripe = Stripe('pk_test_ARgAJVgJV0Qd8Dau7ROW6Tth');
+var elements = stripe.elements();
+// Custom Styling
+var style = {
+    base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+            color: '#aab7c4'
+        }
+    },
+    invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+    }
+};
+// Create an instance of the card Element
+var card = elements.create('card', {style: style});
+// Add an instance of the card Element into the `card-element` <div>
+card.mount('#card-element');
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+});
+// Handle form submission
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+stripe.createToken(card).then(function(result) {
+        if (result.error) {
+            // Inform the user if there was an error
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error.message;
+        } else {
+            stripeTokenHandler(result.token);
+        }
     });
-
-    var checkout = new Demo({
-      formID: 'payment-form'
-    });
-</script>
-<script>
+});
+// Send Stripe Token to Server
+function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+// Add Stripe Token to hidden input
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+// Submit form
+    form.submit();
+}
 
   function updateStudent(elem) {
     document.getElementById("chosenstudent").value = elem.value;
+    document.getElementById("studentname").value = elem.options[elem.selectedIndex].text;
   }
 
   function updateCourse(elem) {
@@ -163,7 +206,7 @@
     }
     document.getElementById("chosencourse").value = elem.value;
     document.getElementById(elem.value).style.display = "block";
-    document.getElementById("button").disabled = false;
+    document.getElementById("btnSubmit").disabled = false;
   }
 
 </script>

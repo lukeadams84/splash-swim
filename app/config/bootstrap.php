@@ -220,6 +220,7 @@ Type::build('timestamp')
 
 Plugin::load('Migrations');
 Plugin::load('braintree', ['bootstrap' => true]);
+Plugin::load('stripe', ['bootstrap' => true]);
 Plugin::load('AdminLTE', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('UserLTE', ['bootstrap' => true, 'routes' => true]);
 /*

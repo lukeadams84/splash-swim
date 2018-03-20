@@ -145,7 +145,7 @@ class FormHelperTest extends TestCase
     public function testStaticControl()
     {
         unset($this->article['required']['title']);
-        $this->article['defaults']['title'] = 'foo bar';
+        $this->article['defaults']['title'] = 'foo <u>bar</u>';
         $this->Form->create($this->article);
 
         $result = $this->Form->input('title', ['type' => 'staticControl']);
@@ -155,29 +155,32 @@ class FormHelperTest extends TestCase
             'Title',
             '/label',
             'p' => ['class' => 'form-control-static'],
-            'foo bar',
+            'foo &lt;u&gt;bar&lt;/u&gt;',
             '/p',
             'input' => [
                 'type' => 'hidden',
                 'name' => 'title',
                 'id' => 'title',
-                'value' => 'foo bar',
+                'value' => 'foo &lt;u&gt;bar&lt;/u&gt;',
             ],
             '/div'
         ];
         $this->assertHtml($expected, $result);
-        $this->assertSame(['title' => 'foo bar'], $this->Form->fields);
+        $this->assertSame(['title' => 'foo <u>bar</u>'], $this->Form->fields);
 
         $this->Form->fields = [];
 
-        $result = $this->Form->input('title', ['type' => 'staticControl', 'hiddenField' => false]);
+        $result = $this->Form->input('title', ['type' => 'staticControl', 'hiddenField' => false, 'escape' => false]);
         $expected = [
             'div' => ['class' => 'form-group staticControl'],
             'label' => ['class' => 'control-label', 'for' => 'title'],
             'Title',
             '/label',
             'p' => ['class' => 'form-control-static'],
-            'foo bar',
+            'foo',
+            'u' => [],
+            'bar',
+            '/u',
             '/p',
             '/div'
         ];
@@ -1491,6 +1494,62 @@ class FormHelperTest extends TestCase
             ['div' => ['class' => 'help-block']],
             'help text',
             '/div',
+            '/div',
+            '/div'
+        ];
+        $this->assertHtml($expected, $result);
+    }
+
+    /**
+     * @return void
+     */
+    public function testTooltip()
+    {
+        $this->Form->create($this->article);
+
+        $result = $this->Form->control('title', ['tooltip' => 'Some important additional notes.']);
+        $expected = [
+            'div' => ['class' => 'form-group text required'],
+            'label' => ['class' => 'control-label', 'for' => 'title'],
+            'Title',
+            'span' => ['data-toggle' => 'tooltip', 'title' => 'Some important additional notes.', 'class' => 'glyphicon glyphicon-info-sign'],
+            '/span',
+            '/label',
+            'input' => [
+                'type' => 'text',
+                'name' => 'title',
+                'id' => 'title',
+                'class' => 'form-control',
+                'required' => 'required'
+            ],
+            '/div'
+        ];
+        $this->assertHtml($expected, $result);
+    }
+
+    /**
+     * @return void
+     */
+    public function testTooltipHorizontal()
+    {
+        $this->Form->create($this->article, ['align' => 'horizontal']);
+
+        $result = $this->Form->control('title', ['tooltip' => 'Some important additional notes.']);
+        $expected = [
+            'div' => ['class' => 'form-group text required'],
+            'label' => ['class' => 'control-label col-md-2', 'for' => 'title'],
+            'Title ',
+            'span' => ['data-toggle' => 'tooltip', 'title' => 'Some important additional notes.', 'class' => 'glyphicon glyphicon-info-sign'],
+            '/span',
+            '/label',
+            ['div' => ['class' => 'col-md-6']],
+            'input' => [
+                'type' => 'text',
+                'name' => 'title',
+                'id' => 'title',
+                'class' => 'form-control',
+                'required' => 'required'
+            ],
             '/div',
             '/div'
         ];

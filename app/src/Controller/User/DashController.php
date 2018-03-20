@@ -17,7 +17,6 @@ class DashController extends UserController
     $userquery = $userTable->find('all')
       ->where(['Users.id =' => $this->request->session()->read('Auth.User.id')])
       ->limit(1);
-    //$user = $this->request->session()->read('Auth.User');
     $query = $studentTable->find('ownedBy', ['parent' => $this->request->session()->read('Auth.User'), 'contain' => ['Coursegroups']]);
     $students = $query->toArray();
     $user = $userquery->first();

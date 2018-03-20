@@ -8,6 +8,8 @@ return [
         'BootstrapUI' => $baseDir . '/vendor/friendsofcake/bootstrap-ui/',
         'DebugKit' => $baseDir . '/vendor/cakephp/debug_kit/',
         'Migrations' => $baseDir . '/vendor/cakephp/migrations/',
-        'braintree' => $baseDir . '/plugins/braintree/'
+        'WyriHaximus/TwigView' => $baseDir . '/vendor/wyrihaximus/twig-view/',
+        'braintree' => $baseDir . '/plugins/braintree/',
+        'stripe' => $baseDir . '/plugins/stripe/'
     ]
 ];

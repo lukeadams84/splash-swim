@@ -6,8 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Umpirsky\\' => array($vendorDir . '/umpirsky/twig-php-function/src'),
+    'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
     'Braintree' => array($vendorDir . '/braintree/braintree_php/lib'),
+    'Aptoma' => array($vendorDir . '/aptoma/twig-markdown/src'),
 );
